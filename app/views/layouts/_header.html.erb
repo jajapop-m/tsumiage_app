@@ -6,7 +6,12 @@
     <%= link_to "Home", root_path, { class: "p-2 text-dark" } %>
     <%= link_to "Users", "#", { class: "p-2 text-dark" } %>
     <%= link_to "Posts", "#" , { class: "p-2 text-dark" } %>
-    <%= link_to "Profile", "#" , { class: "p-2 text-dark" } %>
+    <% if logged_in? %>
+      <%= link_to "Profile", user_path(current_user) ,  class: "p-2 text-dark"  %>
+      <%= link_to "Log out", logout_path , method: :delete , class: "p-2 text-dark"  %>
+    <% else %>
+      <%= link_to "Log in", login_path , { class: "p-2 text-dark" } %>
+    <% end %>
     <%= link_to "Help", help_path , { class: "p-2 text-dark" } %>
   </nav>
   <%= link_to "Sing up", signup_path, { class: "btn btn-outline-primary" } %>

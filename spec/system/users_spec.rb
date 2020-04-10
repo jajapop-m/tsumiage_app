@@ -26,12 +26,12 @@ describe 'ユーザーアカウント機能', type: :system do
       end
       
       it 'ユーザー登録失敗（ユーザー名が長い）' do
-        fill_in 'ユーザー名', with: "#{"a"*51}"
+        fill_in 'ユーザー名', with: "a"*51
         expect{ click_button '登録' }.not_to change{ User.count }
       end
       
       it 'ユーザー登録失敗（メールアドレスが長い)' do
-        fill_in 'ユーザー名', with: "#{"a"*234+"@example.com"}"
+        fill_in 'ユーザー名', with: "a"*234+"@example.com"
         expect{ click_button '登録' }.not_to change{ User.count }
       end
       
