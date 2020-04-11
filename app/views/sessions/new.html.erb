@@ -7,8 +7,8 @@
   
         <%= f.password_field :password ,{ placeholder: "パスワード", class: "form-control mb-2" }%>
   
-        <%= f.check_box :remember , class: "checkbox mb-3" %>
-        <%= f.label :remember, "ログイン状態を保存する"%>
+        <%= f.check_box :remember_me , class: "checkbox mb-3" %>
+        <%= f.label :remember_me, "ログイン状態を保存する"%>
         <%= f.submit "ログイン", class: "btn btn-primary btn-lg btn-block" %>
       <% end %>
   </div>
