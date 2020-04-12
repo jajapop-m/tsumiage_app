@@ -1,59 +1,49 @@
 require 'rails_helper'
 include SessionsHelper
 
-describe 'ユーザー登録機能', type: :system do
+describe 'ログイン機能' do
   before do
-    visit signup_path
-    fill_in 'ユーザー名', with: 'テストユーザー'
-    fill_in 'メールアドレス', with: 'test1@example.com'
-    fill_in 'パスワード', with: 'password'
-    fill_in 'パスワード（確認）', with: 'password'
+    visit login_path
   end
 
-  it 'ユーザー登録成功' do
-    expect{ click_button '登録' }.to change{ User.count }.by(1)
-  end
-
-  context 'ユーザー登録失敗' do
-
-    it 'ユーザー名が空欄' do
-      fill_in 'ユーザー名', with: ''
-      expect{ click_button '登録' }.not_to change{ User.count }
-    end
-
-    it 'メールアドレスが空欄' do
+  describe 'ログインが失敗する場合' do
+    before do
       fill_in 'メールアドレス', with: ''
-      expect{ click_button '登録' }.not_to change{ User.count }
-    end
-
-    it 'ユーザー名が長い' do
-      fill_in 'ユーザー名', with: "a"*51
-      expect{ click_button '登録' }.not_to change{ User.count }
-    end
-
-    it 'メールアドレスが長い' do
-      fill_in 'メールアドレス', with: "a"*244+"@example.com"
-      expect{ click_button '登録' }.not_to change{ User.count }
-    end
-
-    it 'メールアドレスが不適' do
-      fill_in 'メールアドレス', with: 'aaaaaaa'
-      expect{ click_button '登録' }.not_to change{ User.count }
-    end
-
-    it 'メールアドレスが重複' do
-      FactoryBot.create(:user)
-      expect{ click_button '登録' }.not_to change{ User.count }
-    end
-
-    it 'パスワードが空欄' do
       fill_in 'パスワード', with: ''
-      expect{ click_button '登録' }.not_to change{ User.count }
+      click_button 'ログイン'
     end
 
-    it 'パスワードが短い' do
-      fill_in 'パスワード', with: 'aaaaa'
-      expect{ click_button '登録' }.not_to change{ User.count }
+    subject{ page }
+
+    it 'リンクが未ログイン時のものになっている' do
+      is_expected.to have_content 'Log in'
+      is_expected.to have_no_content 'Profile'
     end
-  end  
+
+    it 'アラートメッセージが出る' do
+      is_expected.to have_selector('.alert-danger',text: '失敗' )
+    end
+
+    it 'アラートメッセージが消える' do
+      visit root_path
+      is_expected.not_to have_selector('.alert-danger',text: '失敗')
+    end
+  end
+
+  describe 'sessionログイン' do
+    before do
+      @user_a = FactoryBot.create(:user)
+      fill_in 'メールアドレス', with: 'test1@example.com'
+      fill_in 'パスワード', with: 'password'
+      click_button 'ログイン'
+    end
+
+    subject{ page }
+
+    it 'ログインが成功したときのレイアウト' do
+      is_expected.to have_link href: logout_path
+      is_expected.to have_link href: user_path(@user_a)
+      is_expected.to have_no_link href: login_path
+    end
+  end
 end
