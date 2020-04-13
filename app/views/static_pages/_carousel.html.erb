@@ -1,0 +1,45 @@
+<div>
+  <div class="container">
+    <div class="carousel slide carousel-fade" data-ride="carousel" id="main_visual">
+      
+      <ol class="carousel-indicators">
+        <li data-target="#main_visual" data-slide-to="0" class="active"></li>
+        <li data-target="#main_visual" data-slide-to="1" ></li>
+        <li data-target="#main_visual" data-slide-to="2" ></li>        
+      </ol>
+      
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <%= image_tag "reading_books.jpg" , { class: "img-fluid w-100"} %>
+          <div class="carousel-caption d-none d-md-block text-dark">
+            <h2>日々の学びを蓄積</h2>
+            <p>目標を設定し、日々、学んだことを記録</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <%= image_tag "not_understand.jpg" , { class: "img-fluid w-100"} %>
+          <div class="carousel-caption d-none d-md-block text-dark">
+            <h2>疑問点を解消</h2>
+            <p>わからないところは友人と相談できる。</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <%= image_tag "senpai.jpg" , { class: "img-fluid w-100"} %>
+          <div class="carousel-caption d-none d-md-block rounded text-dark">
+            <h2>先輩から後輩へ繋がる勉強の軌跡</h2>
+            <p>目標を達成した先輩の軌跡がわかる。</p>
+          </div>
+        </div>
+      </div>
+      
+      <a class="carousel-control-prev" href="#main_visual" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">前に戻る</span>
+      </a> 
+      <a class="carousel-control-next" href="#main_visual" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">次に進む</span>
+      </a>
+    </div>
+  </div>
+</div>

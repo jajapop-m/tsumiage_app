@@ -1,0 +1,42 @@
+<div class="py-4">
+  <section id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <%= image_tag "let's_try.jpg" , { class: "img-fluid"} %>
+            <div class="card-body d-flex justify-content-between">
+              <p class="card-title">目標達成への道筋</p>
+              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modal01">
+                詳しく見る
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <%= image_tag "pile_of_books.jpg" , { class: "img-fluid"} %>
+            <div class="card-body d-flex justify-content-between">
+              <p class="card-title">理解が深まる</p>
+              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modal02">
+                詳しく見る
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <%= image_tag "plan_your_week.jpg" , { class: "img-fluid"} %>
+            <div class="card-body d-flex justify-content-between">
+              <p class="card-title">続けられる</p>
+              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modal03">
+                詳しく見る
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<%= render 'about_modal' %>

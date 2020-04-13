@@ -45,7 +45,7 @@ describe 'ログイン-ログアウト機能' do
 
     it 'ログインが成功したときのレイアウト' do
       is_expected.to have_content '成功'
-      is_expected.to have_button 'My Account'
+      is_expected.to have_css '.dropdown-toggle'
       is_expected.to have_no_link href: login_path
     end
   end
