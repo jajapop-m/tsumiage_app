@@ -18,7 +18,7 @@ RSpec.describe "Remember me", type: :request do
                                       password: user.password,
                                       remember_me: '1'} }
       delete logout_path
-
+      
       post login_path, params: { session: { email: user.email,
                                       password: user.password,
                                       remember_me: '0'} }

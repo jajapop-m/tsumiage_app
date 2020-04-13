@@ -2,6 +2,8 @@ require 'rails_helper'
 include SessionsHelper
 
 describe 'ログイン-ログアウト機能' do
+  let!(:user) { FactoryBot.create(:user) }
+  
   before do
     visit login_path
   end
@@ -16,8 +18,8 @@ describe 'ログイン-ログアウト機能' do
     subject{ page }
 
     it 'リンクが未ログイン時のものになっている' do
-      is_expected.to have_content 'Log in'
-      is_expected.to have_no_content 'Profile'
+      is_expected.to have_link href: login_path
+      is_expected.to have_no_link href: user_path(user)
     end
 
     it 'アラートメッセージが出る' do
@@ -31,7 +33,6 @@ describe 'ログイン-ログアウト機能' do
   end
 
   describe 'sessionログイン機能' do
-    let!(:user) { FactoryBot.create(:user) }
       
     before do
       fill_in 'メールアドレス', with: 'test1@example.com'
@@ -43,22 +44,9 @@ describe 'ログイン-ログアウト機能' do
     subject{ page }
 
     it 'ログインが成功したときのレイアウト' do
-      is_expected.to have_link href: logout_path
-      is_expected.to have_link href: user_path(user)
+      is_expected.to have_content '成功'
+      is_expected.to have_button 'My Account'
       is_expected.to have_no_link href: login_path
-    end
-    
-    describe 'ログアウト機能' do
-      before do
-        visit root_path
-        click_link href: logout_path
-      end
-      
-      it 'ログイン後ログアウトしたときのレイアウト' do
-        is_expected.to have_link href: login_path
-        is_expected.to have_no_link href: logout_path
-        is_expected.to have_no_link href: user_path(user)
-      end
     end
   end
 end
