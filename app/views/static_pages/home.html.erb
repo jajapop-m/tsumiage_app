@@ -1,18 +1,45 @@
-<div class="container">
-  <div class="text-center row justify-content-center">
-    <form class="form-signin col-8 col-lg-6">
-      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-      <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
+<div class="py-4">
+  <div class="container">
+    <div class="carousel slide carousel-fade" data-ride="carousel" id="main_visual">
+      
+      <ol class="carousel-indicators">
+        <li data-target="#main_visual" data-slide-to="0" class="active"></li>
+        <li data-target="#main_visual" data-slide-to="1" ></li>
+        <li data-target="#main_visual" data-slide-to="2" ></li>        
+      </ol>
+      
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <%= image_tag "reading_books.jpg" , { class: "img-fluid w-100"} %>
+          <div class="carousel-caption d-none d-md-block text-dark">
+            <h2>日々の学びを蓄積</h2>
+            <p>目標を設定し、日々、学んだことを記録</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <%= image_tag "not_understand.jpg" , { class: "img-fluid w-100"} %>
+          <div class="carousel-caption d-none d-md-block text-dark">
+            <h2>疑問点を解消</h2>
+            <p>わからないところは友人と相談できる。</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <%= image_tag "senpai.jpg" , { class: "img-fluid w-100"} %>
+          <div class="carousel-caption d-none d-md-block rounded text-dark">
+            <h2>先輩から後輩へ繋がる勉強の軌跡</h2>
+            <p>目標を達成した先輩の軌跡がわかる。</p>
+          </div>
+        </div>
       </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      <p class="mt-5 mb-3 text-muted">2020</p>
-    </form>
+      
+      <a class="carousel-control-prev" href="#main_visual" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">前に戻る</span>
+      </a> 
+      <a class="carousel-control-next" href="#main_visual" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">次に進む</span>
+      </a>
+    </div>
   </div>
 </div>
