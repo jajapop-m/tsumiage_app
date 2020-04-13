@@ -42,7 +42,6 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 4.11'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara'
-  gem 'selenium-webdriver'
   gem 'rspec-rails'
   gem 'rails-controller-testing'
 end
@@ -58,6 +57,7 @@ end
 
 group :production do
   gem 'pg', '0.20.0'
+  gem 'rails_12factor'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
