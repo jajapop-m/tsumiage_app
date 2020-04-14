@@ -2,7 +2,7 @@ require 'rails_helper'
 include SessionsHelper
 
 describe 'ログイン-ログアウト機能' do
-  let!(:user) { FactoryBot.create(:user) }
+  let!(:user) { FactoryBot.create(:user, email: "test1@example.com") }
   
   before do
     visit login_path
