@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.6.6'
+ruby '2.6.3'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -13,6 +13,8 @@ gem 'bcrypt',         '3.1.11'
 gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -43,6 +45,7 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 4.11'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara'
+  gem 'selenium-webdriver'
   gem 'rspec-rails'
   gem 'rails-controller-testing'
 end
