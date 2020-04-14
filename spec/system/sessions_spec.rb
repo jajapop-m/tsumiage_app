@@ -48,5 +48,11 @@ describe 'ログイン-ログアウト機能' do
       is_expected.to have_css '.dropdown-toggle'
       is_expected.to have_no_link href: login_path
     end
+    
+    it 'ログイン後ログアウトしたときのレイアウト' do
+      find('.dropdown-toggle').click
+      click_link href: logout_path
+      is_expected.to have_content 'ログアウトしました'
+    end
   end
 end
