@@ -1,15 +1,17 @@
+<% @post = Post.new unless @post %>
 <div class="container">
-  <div class="row text-center">
+  <div class="row text-center justify-content-center">
     <div class="col-12">
       <%= form_for(@post) do |f| %>
         <%= render 'layouts/error_messages', model: f.object %>
-        <%= f.text_field :title ,{ placeholder: "タイトル", class: "form-control mb-2" } %>
+        <%= f.text_area :title ,{ placeholder: "タイトル(50文字以内)", class: "form-control mb-2" } %>
   
-        <%= f.text_area :content ,{ placeholder: "本文", class: "form-control mb-2" } %>
-        <%= f.submit "登録", class: "btn btn-primary btn-lg btn-block" %>
-        <span class="picture">
-          <%= f.file_field :picture %>
-        </span>
+        <%= f.text_area :content ,{ placeholder: "本文", class: "form-control mb-2", rows: "10" } %>
+        <span class="picture"><%= f.file_field :picture %></span>
+    </div>
+        <div class="col-md-6">
+          <%= f.submit "登録", class: "btn btn-purple-moon btn-lg btn-rounded" %>
+        </div>
       <% end %>
   </div>
 </div>

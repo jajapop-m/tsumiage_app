@@ -39,12 +39,7 @@ describe 'ユーザー登録機能', type: :system do
       fill_in 'メールアドレス', with: 'aaaaaaa'
       expect{ click_button '登録' }.not_to change{ User.count }
     end
-
-    it 'メールアドレスが重複' do
-      FactoryBot.create(:user, name: "テストユーザー2", email: "test1@example.com", password: "password2")
-      expect{ click_button '登録' }.not_to change{ User.count }
-    end
-
+    
     it 'パスワードが空欄' do
       fill_in 'パスワード', with: ''
       expect{ click_button '登録' }.not_to change{ User.count }
