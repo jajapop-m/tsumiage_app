@@ -3,11 +3,7 @@
     <div class="row">
       <span><%= link_to post.user.name, post.user , class: "col-12 text-dark"%></span>
       <span class="col-12"><%= link_to post.title, post_path(post), class: "col-12 text-dark strong" %></span>
-<<<<<<< HEAD
       <%= image_tag post.picture.url if post.picture? %>
-=======
-      <%= image_tag post.picture.url.to_s if post.picture? %>
->>>>>>> origin/posts
       <span class="col-12"><%= post.content %></span>
       <small class="col-12 text-right text-secondary">
          <%= time_ago_in_words(post.created_at) %>前に投稿
