@@ -9,10 +9,25 @@ class PostsController < ApplicationController
     @post = Post.find_by(id: params[:id])
   end
   
+  def create
+    @post = current_user.posts.build(post_params)
+    if @post.save
+      flash[:success] = "投稿が完了しました。"
+      redirect_to root_url
+    else
+      redirect_to user_path(current_user)
+      flash[:danger] = "投稿が失敗しました。"
+    end
+  end
+  
   private
   
+    def post_params
+      params.require(:post).permit(:title, :content, :picture)
+    end
+  
     def correct_user
-      @micropost = current_user.microposts.find_by(id: params[:id])
-      redirect_to root_url if @micropost.nil?
+      @post = current_user.posts.find_by(id: params[:id])
+      redirect_to root_url if @post.nil?
     end
 end

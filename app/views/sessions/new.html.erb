@@ -3,6 +3,7 @@
   <h1 class="col-12 h3 mb-3 font-weight-normal">ログイン</h1>
     <div class="signin col-md-6 col-md-offset-3">
       <%= form_for :session, url: login_path do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
         <%= f.email_field :email ,{ placeholder: "メールアドレス", class: "form-control mb-2" } %>
   
         <%= f.password_field :password ,{ placeholder: "パスワード", class: "form-control mb-2" }%>
