@@ -37,7 +37,7 @@ describe 'ログイン-ログアウト機能' do
     before do
       fill_in 'メールアドレス', with: 'test1@example.com'
       fill_in 'パスワード', with: 'password'
-      check 'ログイン状態を保存する'
+      check 'ログイン状態を保存'
       click_button 'ログイン'
     end
 

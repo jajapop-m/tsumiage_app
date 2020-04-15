@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
   
   def new
+    @post = current_user.posts.build if logged_in?
   end
   
   def show
@@ -11,6 +12,8 @@ class PostsController < ApplicationController
   
   def create
     @post = current_user.posts.build(post_params)
+    @post.content = "by #{current_user.name}" if @post.title.present? && @post.content.blank?
+    @post.title = "無題" if @post.title.blank?
     if @post.save
       flash[:success] = "投稿が完了しました。"
       redirect_to root_url

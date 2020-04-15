@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @post = current_user.posts.build if logged_in?
+    @post = current_user.posts.build if current_user?(@user)
     @posts = @user.posts.paginate(page: params[:page])
   end
   
@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = "ユーザー登録が完了しました。"
+      log_in @user
       redirect_to @user
     else
       flash.now[:danger] = "登録が失敗しました。"
