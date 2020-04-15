@@ -16,7 +16,11 @@ gem 'jquery-ui-rails'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'carrierwave'
+<<<<<<< HEAD
 gem 'mini_magick'
+=======
+gem 'mini_magick',             '4.7.0'
+>>>>>>> origin/posts
 gem 'fog',                     '1.40.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'

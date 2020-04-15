@@ -12,8 +12,11 @@ class PostsController < ApplicationController
   
   def create
     @post = current_user.posts.build(post_params)
+<<<<<<< HEAD
     @post.content = "by #{current_user.name}" if @post.title.present? && @post.content.blank?
     @post.title = "無題" if @post.title.blank?
+=======
+>>>>>>> origin/posts
     if @post.save
       flash[:success] = "投稿が完了しました。"
       redirect_to root_url

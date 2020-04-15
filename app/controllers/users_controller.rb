@@ -8,7 +8,11 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+<<<<<<< HEAD
     @post = current_user.posts.build if current_user?(@user)
+=======
+    @post = current_user.posts.build if logged_in?
+>>>>>>> origin/posts
     @posts = @user.posts.paginate(page: params[:page])
   end
   
