@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
   
   def index
-    render new_post_path(@post)
+    redirect_to current_user
   end
   
   def new
