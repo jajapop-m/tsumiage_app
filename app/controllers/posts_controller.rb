@@ -2,25 +2,48 @@ class PostsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
   
+  def index
+    render new_post_path(@post)
+  end
+  
   def new
-    @post = current_user.posts.build if logged_in?
+    @post = Post.new(post_params)
   end
   
   def show
-    @post = Post.find_by(id: params[:id])
+    if params[:form_scale]
+      
+    else
+      @post = Post.find_by(id: params[:id])
+    end
   end
   
   def create
-    @post = current_user.posts.build(post_params)
-    @post.content = "by #{current_user.name}" if @post.title.present? && @post.content.blank?
-    @post.title = "無題" if @post.title.blank?
-    if @post.save
-      flash[:success] = "投稿が完了しました。"
-      redirect_to root_url
+    if params[:form_expansion]
+      @post = Post.new(post_params)
+      render new_post_path(@post)
+    elsif params[:form_reduction]
+      @post = Post.new(post_params)
+      @user = current_user
+      @posts = @user.posts.paginate(page: params[:page])
+      render '/users/show'
     else
-      redirect_to user_path(current_user)
-      flash[:danger] = "投稿が失敗しました。"
+      @post = current_user.posts.build(post_params)
+      edit_empty_field(@post)
+      if @post.save
+        flash[:success] = "投稿が完了しました。"
+        redirect_to root_url
+      else
+        redirect_to user_path(current_user)
+        flash[:danger] = "投稿が失敗しました。"
+      end
     end
+  end
+  
+  
+  def edit_empty_field(post)
+    post.content = "by #{current_user.name}" if post.title.present? && post.content.blank?
+    post.title = "無題" if post.title.blank?
   end
   
   private
@@ -33,4 +56,5 @@ class PostsController < ApplicationController
       @post = current_user.posts.find_by(id: params[:id])
       redirect_to root_url if @post.nil?
     end
+    
 end
