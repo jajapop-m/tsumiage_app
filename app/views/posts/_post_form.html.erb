@@ -1,15 +1,15 @@
 <% @post = Post.new unless @post %>
 <div class="container">
-  <div class="row text-center justify-content-center">
+  <div class="row justify-content-center">
     <div class="col-12">
       <%= form_for(@post) do |f| %>
         <%= render 'layouts/error_messages', model: f.object %>
         
         <%= f.submit '投稿画面を拡大', name: "form_expansion" ,class: "btn btn-sm btn-purple-moon btn-rounded text-right" %>
         
-        <%= f.text_area :title ,{ placeholder: "タイトル(50文字以内)", class: "form-control mb-2" } %>
+        <%= f.text_area :title ,{ placeholder: "タイトル(50文字)", class: "form-control mb-2" } %>
   
-        <%= f.text_area :content ,{ placeholder: "本文", class: "form-control mb-2", rows: "10" } %>
+        <%= f.text_area :content ,{ placeholder: "本文", class: "form-control mb-2", rows: "8" } %>
         <span class="picture text-center"><%= f.file_field :picture %></span>
     </div>
         <div class="col-md-6">

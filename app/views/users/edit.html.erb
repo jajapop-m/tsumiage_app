@@ -12,7 +12,7 @@
         <%= f.password_field :password ,{ placeholder: "パスワード", class: "form-control mb-2" }%>
   
         <%= f.password_field :password_confirmation ,{ placeholder: "パスワード（確認）", class: "form-control mb-2" } %>
-        <%= f.submit "登録", class: "btn btn-primary btn-lg btn-block" %>
+        <%= f.submit "登録", class: "btn btn-primary btn-lg btn-block mb-5" %>
       <% end %>
       
       <% if current_user?(@user) %>
