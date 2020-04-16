@@ -3,6 +3,8 @@
   <h1 class="col-12 h3 mb-3 font-weight-normal">ユーザー情報の編集</h1>
     <div class="signin col-md-6 col-md-offset-3">
       <%= form_for(@user) do |f| %>
+        <%= render 'layouts/error_messages' , model: f.object %>
+      
         <%= f.text_field :name ,{ placeholder: "ユーザー名", class: "form-control mb-2" } %>
   
         <%= f.email_field :email ,{ placeholder: "メールアドレス", class: "form-control mb-2" } %>
@@ -12,5 +14,13 @@
         <%= f.password_field :password_confirmation ,{ placeholder: "パスワード（確認）", class: "form-control mb-2" } %>
         <%= f.submit "登録", class: "btn btn-primary btn-lg btn-block" %>
       <% end %>
+      
+      <% if current_user?(@user) %>
+        <button class="btn btn-pink-moon btn-outline-danger btn-rounded btn-sm  mt-5">
+          <%= link_to "アカウントを削除", @user, method: :delete, class: "text-dark",
+          data: { confirm: "アカウントを削除するともとに戻せません。本当に削除しますか？" } %>
+        </button>
+      <% end %>
+      
   </div>
 </div>
