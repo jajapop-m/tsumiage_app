@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @post = current_user.posts.build if current_user?(@user)
+    @post = Post.new if current_user? @user
     @posts = @user.posts.paginate(page: params[:page])
   end
   

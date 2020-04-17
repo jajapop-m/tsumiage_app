@@ -2,19 +2,36 @@ require 'rails_helper'
 include SessionsHelper
 
 describe 'Post投稿機能' do
+  let!(:user) { FactoryBot.create(:user, email: "test1@example.com") }
+  let!(:user_2) { FactoryBot.create(:user, email: "test2@example.com") }
+  
+  before 'ログイン後user詳細画面を表示' do
+    visit login_path
+    fill_in 'メールアドレス', with: 'test1@example.com'
+    fill_in 'パスワード', with: 'password'
+    check 'ログイン状態を保存'
+    click_button 'ログイン'
+    visit user_path(user)
+  end
+  
+  context '投稿フォーム' do
+    it '自分のページではフォームが表示されている' do
+      expect(page).to have_selector 'form#new_post'
+    end
+    
+    it '他人のページではフォームが表示されていない' do
+      visit user_path(user_2)
+      expect(page).not_to have_selector 'form#new_post'
+    end
+    
+    it '/posts/newでフォームが表示されている' do
+      expect(page).to have_selector 'form#new_post'
+    end
+  end
+  
   context '投稿が成功する場合' do
-    let!(:user) { FactoryBot.create(:user, email: "test1@example.com") }
     let(:time) { '前に投稿' }
     let(:alert) { '投稿が完了しました。' }
-    
-    before 'ログイン後user詳細画面を表示' do
-      visit login_path
-      fill_in 'メールアドレス', with: 'test1@example.com'
-      fill_in 'パスワード', with: 'password'
-      check 'ログイン状態を保存'
-      click_button 'ログイン'
-      visit user_path(user)
-    end
     
     context 'user画面で投稿ボタンが押された場合' do
       let(:title_1) { '1.テスト題名' }
@@ -129,7 +146,5 @@ describe 'Post投稿機能' do
         expect(find_by_id(post_id)).to have_selector 'img'
       end
     end
-    
   end
-  
 end
