@@ -5,16 +5,16 @@
       <%= form_for(@post) do |f| %>
         <%= render 'layouts/error_messages', model: f.object %>
         
-        <%= f.submit '投稿画面を縮小', name: "form_reduction" ,class: "btn btn-sm btn-purple-moon btn-rounded text-right" %>
+        <%= f.submit '投稿画面を縮小', name: "form_reduction" ,class: "btn btn-sm btn-purple-moon btn-rounded text-right reduction" %>
 
-        <%= f.text_area :title ,{ placeholder: "タイトル(50文字以内で入力してください)", class: "form-control mb-2" } %>
+        <%= f.text_area :title ,{ placeholder: "タイトル(50文字以内で入力してください)", class: "form-control mb-2 title" } %>
   
-        <%= f.text_area :content ,{ placeholder: "本文を入力してください。", class: "form-control mb-2", rows: "12" } %>
+        <%= f.text_area :content ,{ placeholder: "本文を入力してください。", class: "form-control mb-2 content", rows: "12" } %>
       
         <span class="picture"><%= f.file_field :picture %></span>
       </div>
         <div>
-          <%= f.submit "登録", class: "btn btn-purple-moon btn-lg btn-rounded text-center" %>
+          <%= f.submit "投稿", class: "btn btn-purple-moon btn-lg btn-rounded text-center post_request" %>
         </div>
       <% end %>
   </div>

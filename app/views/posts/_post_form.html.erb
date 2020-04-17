@@ -5,15 +5,15 @@
       <%= form_for(@post) do |f| %>
         <%= render 'layouts/error_messages', model: f.object %>
         
-        <%= f.submit '投稿画面を拡大', name: "form_expansion" ,class: "btn btn-sm btn-purple-moon btn-rounded text-right" %>
+        <%= f.submit '投稿画面を拡大', name: "form_expansion" ,class: "btn btn-sm btn-purple-moon btn-rounded text-right expansion" %>
         
-        <%= f.text_area :title ,{ placeholder: "タイトル(50文字)", class: "form-control mb-2" } %>
+        <%= f.text_area :title ,{ placeholder: "タイトル(50文字)", class: "form-control mb-2 title" } %>
   
-        <%= f.text_area :content ,{ placeholder: "本文", class: "form-control mb-2", rows: "8" } %>
-        <span class="picture text-center"><%= f.file_field :picture %></span>
+        <%= f.text_area :content ,{ placeholder: "本文", class: "form-control mb-2 content", rows: "8" } %>
+        <span class="text-center"><%= f.file_field :picture , id: "picture" %></span>
     </div>
         <div class="col-md-6">
-          <%= f.submit "登録", class: "btn btn-purple-moon btn-lg btn-rounded text-center" %>
+          <%= f.submit "投稿", class: "btn btn-purple-moon btn-lg btn-rounded text-center post_request" %>
         </div>
       <% end %>
   </div>
