@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :correct_user , only: [:edit, :destroy]
   
   def index 
-    @users = User.paginate(page: params[:page])
+    @users = User.page(params[:page]).per(30)
   end
   
   def new
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @post = Post.new if current_user? @user
-    @posts = @user.posts.paginate(page: params[:page])
+    @posts = @user.posts.page(params[:page]).per(30)
   end
   
   def create

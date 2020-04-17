@@ -99,3 +99,19 @@ hr {
 }
 
 li {  list-style: none;  }
+
+
+/*ページネーション自体のデザイン*/
+.pagination>li>a.page-link {
+  border: none;
+  color: #696969;
+}
+
+.pagination>.active>a.page-link {
+  background: #93c9ff;
+  border-radius: 15px;
+}
+
+.pagination>li>a:hover {
+  border-radius: 15px;
+}
