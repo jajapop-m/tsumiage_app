@@ -11,11 +11,7 @@ class PostsController < ApplicationController
   end
   
   def show
-    if params[:form_scale]
-      
-    else
       @post = Post.find_by(id: params[:id])
-    end
   end
   
   def create
