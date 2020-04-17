@@ -25,7 +25,7 @@ class PostsController < ApplicationController
     elsif params[:form_reduction]
       @post = Post.new(post_params)
       @user = current_user
-      @posts = @user.posts.paginate(page: params[:page])
+      @posts = @user.posts.page(params[:page]).per(30)
       render '/users/show'
     else
       @post = current_user.posts.build(post_params)
