@@ -44,7 +44,7 @@ describe 'ログイン-ログアウト機能' do
     subject{ page }
 
     it 'ログインが成功したときのレイアウト' do
-      is_expected.to have_content '成功'
+      is_expected.to have_selector '.alert', text: '成功'
       is_expected.to have_css '.dropdown-toggle'
       is_expected.to have_no_link href: login_path
     end
