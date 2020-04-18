@@ -40,6 +40,12 @@ class PostsController < ApplicationController
     end
   end
   
+  def destroy
+    Post.find(params[:id]).destroy
+    flash[:success] = "投稿を削除しました。"
+    redirect_to user_url(current_user)
+  end
+  
   
   def edit_empty_field(post)
     post.content = "by #{current_user.name}" if post.title.present? && post.content.blank?
