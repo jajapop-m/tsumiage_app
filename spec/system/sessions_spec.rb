@@ -2,7 +2,7 @@ require 'rails_helper'
 include SessionsHelper
 
 describe 'ログイン-ログアウト機能' do
-  let!(:user) { FactoryBot.create(:user, email: "test1@example.com") }
+  let!(:user) { FactoryBot.create(:user) }
   
   before do
     visit login_path
@@ -35,7 +35,7 @@ describe 'ログイン-ログアウト機能' do
   describe 'sessionログイン機能' do
       
     before do
-      fill_in 'メールアドレス', with: 'test1@example.com'
+      fill_in 'メールアドレス', with: "#{user.email}"
       fill_in 'パスワード', with: 'password'
       check 'ログイン状態を保存'
       click_button 'ログイン'
