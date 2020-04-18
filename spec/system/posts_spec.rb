@@ -3,11 +3,11 @@ include SessionsHelper
 
 describe 'Post投稿機能' do
   let!(:user) { FactoryBot.create(:user, email: "test1@example.com") }
-  let!(:user_2) { FactoryBot.create(:user, email: "test2@example.com") }
+  let!(:user_2) { FactoryBot.create(:user) }
   
   before 'ログイン後user詳細画面を表示' do
     visit login_path
-    fill_in 'メールアドレス', with: 'test1@example.com'
+    fill_in 'メールアドレス', with: "#{user.email}"
     fill_in 'パスワード', with: 'password'
     check 'ログイン状態を保存'
     click_button 'ログイン'
