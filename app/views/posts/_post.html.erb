@@ -1,13 +1,23 @@
 <li id="post-<%= post.id %>">
-  <div class="container">
+  <div class="container border card mb-3">
     <div class="row">
-      <span><%= link_to post.user.name, post.user , class: "col-12 text-dark"%></span>
-      <span class="col-12"><%= link_to post.title, post_path(post), class: "col-12 text-dark strong" %></span>
+      <span class="card-header col-12 p-1"><%= link_to post.user.name, post.user , class: "col-12 text-dark"%></span>
+      <span class="col-12 card-title mt-3"><%= link_to post.title, post_path(post), class: "col-12 text-dark strong" %></span>
       <%= image_tag post.picture.url if post.picture? %>
-      <span class="col-12"><%= post.content %></span>
-      <small class="col-12 text-right text-secondary">
-         <%= time_ago_in_words(post.created_at) %>前に投稿
-      </small>
+      <div style="white-space:pre-wrap" class="col-12 card-body"><%= post.content %></div>
+      <div class="col-10 text-right card-footer">
+        <small class="text-secondary">
+          <%= time_ago_in_words(post.created_at) %>前に投稿
+        </small>
+      </div>
+      <div class="col-2 text-right card-footer p-1">
+        <% if current_user?(post.user) %>
+          <button class="btn btn-light-moon btn-outline-lights btn-rounded btn-sm">
+            <%= link_to "削除", post, method: :delete, class: "text-dark",
+            data: { confirm: "本当にこの投稿を削除しますか？" } %>
+          </button>
+        <% end %>
+      </div>
     </div>
   </div>
 </li>
