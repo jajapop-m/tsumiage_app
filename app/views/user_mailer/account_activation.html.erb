@@ -1,0 +1,13 @@
+<h1><%= @user.name %>さま</h1>
+
+<p>Tsumiageにご登録ありがとうございます。</p>
+
+<p><%= link_to "こちらのリンク", edit_account_activation_url(@user.activation_token, email: @user.email) %>
+からメールアドレスの確認を完了してください。</p>
+
+<p>有効期限は24時間です。</p>
+
+
+<p>-----</p>
+
+<p>このメールアドレスは送信専用です。</p>

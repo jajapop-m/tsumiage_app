@@ -1,0 +1,13 @@
+<%= @user.name %>さま
+
+Tsumiageにご登録ありがとうございます。
+
+以下のリンクからメールアドレスの確認を完了してください。
+<%= edit_account_activation_url(@user.activation_token, email: @user.email) %>
+
+有効期限は24時間です。
+
+
+-----
+
+このメールアドレスは送信専用です。

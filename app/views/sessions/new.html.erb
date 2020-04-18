@@ -12,5 +12,24 @@
         <%= f.label :remember_me, "ログイン状態を保存"%>
         <%= f.submit "ログイン", class: "btn btn-purple-moon btn-lg btn-rounded" %>
       <% end %>
+      
+      <div class="row">
+        <div class="col-6">
+          <div class="card my-5">
+            <div class="card-body">
+              <p class="card-text">ユーザーを作成済みで、メールアドレスの確認がまだの方</p>
+              <%= link_to '確認メールの再送', resend_email_new_path, class: "btn btn-sm btn-green-moon btn-rounded" %>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card my-5">
+            <div class="card-body">
+              <p class="card-text">ユーザーの作成がまだの方</p>
+              <%= link_to 'アカウント作成', signup_path, class: "btn btn-sm btn-green-moon btn-rounded" %>
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
 </div>

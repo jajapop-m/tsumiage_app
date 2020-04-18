@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row text-center justify-content-center">
+  <h1 class="col-12 h3 mb-3 font-weight-normal">メールアドレスの確認メールの再送</h1>
+    <div class="signin col-md-6 col-md-offset-3">
+      <%= form_for(:resend_email ,url: resend_email_path) do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
+        <%= f.email_field :email ,{ placeholder: "メールアドレス", class: "form-control mb-2" } %>
+        <%= f.submit "再送", class: "btn btn-purple-moon btn-lg btn-rounded" %>
+      <% end %>
+  </div>
+</div>

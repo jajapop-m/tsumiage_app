@@ -13,5 +13,22 @@
         <%= f.password_field :password_confirmation ,{ placeholder: "パスワード（確認）", class: "form-control mb-2" } %>
         <%= f.submit "登録", class: "btn btn-purple-moon btn-lg btn-rounded" %>
       <% end %>
+    <div class="row">
+      <div class="col-6">
+        <div class="card my-5">
+          <div class="card-body">
+            <p class="card-text">ユーザーを作成済みで、メールアドレスの確認がまだの方</p>
+            <%= link_to '確認メールの再送', resend_email_new_path, class: "btn btn-sm btn-green-moon btn-rounded" %>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card my-5">
+          <div class="card-body">
+            <%= link_to 'ログイン画面', login_path, class: "btn btn-sm btn-green-moon btn-rounded" %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

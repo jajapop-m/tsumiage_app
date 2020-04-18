@@ -53,9 +53,9 @@ RSpec.describe 'Users controller', type: :request do
         expect(response.status).to eq 302
       end
       
-      it 'リダイレクト先はユーザーshow' do
+      it 'リダイレクト先はユーザーroot_url' do
         post users_url, params: { user: user_params }
-        expect(response).to redirect_to User.last
+        expect(response).to redirect_to root_url
       end
       
       it 'ユーザーが登録されること' do
