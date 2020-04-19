@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   get 'resend_emails/new'
 
-  get 'posts/new'
-
   root 'static_pages#home'
   get '/help', to: 'static_pages#help'
 
@@ -16,6 +14,13 @@ Rails.application.routes.draw do
   post '/resend_email'    , to: 'resend_emails#create'
   
   resources :users
-  resources :posts
+  
+  resources :posts, except: [:index] do
+    collection do
+      get 'index', as: :index
+    end
+  end
+  get '/posts', to: 'posts#home'
+  
   resources :account_activations, only: [:edit]
 end

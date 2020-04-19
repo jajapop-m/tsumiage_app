@@ -1,13 +1,17 @@
 class PostsController < ApplicationController
   before_action :logged_in_user, only: [:new, :create, :update, :destroy]
-  before_action :correct_user, only: [:new, :create, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
   
-  def index
+  def home
     if logged_in?
       redirect_to current_user
     else
       redirect_to root_url
     end
+  end
+  
+  def index
+    @posts = Post.page(params[:page]).per(30)
   end
   
   def new
@@ -16,6 +20,10 @@ class PostsController < ApplicationController
   
   def show
     @post = Post.find_by(id: params[:id])
+  end
+  
+  def edit
+    @post = Post.find(params[:id])
   end
   
   def create
@@ -37,6 +45,16 @@ class PostsController < ApplicationController
         redirect_to user_path(current_user)
         flash[:danger] = "投稿が失敗しました。"
       end
+    end
+  end
+  
+  def update
+    @post = Post.find(params[:id])
+    if @post.update_attributes(post_params)
+      flash[:success] = "編集が完了しました。"
+      redirect_to current_user
+    else
+      render 'edit'
     end
   end
   

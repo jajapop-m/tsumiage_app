@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <%= form_for(@post) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      
+      <%= f.text_area :title ,{ placeholder: "タイトル(50文字以内で入力してください)", class: "form-control mb-2 title" } %>
+
+      <%= f.text_area :content ,{ placeholder: "本文を入力してください。", class: "form-control mb-2 content", rows: "12" } %>
+    
+      <%= f.file_field :picture %>
+      
+      <%= f.submit "編集", class: "btn btn-purple-moon btn-lg btn-rounded text-center post_request mx-auto d-block" %>
+      
+      <% end %>
+      
+      </div>
+  </div>
+</div>

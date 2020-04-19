@@ -2,14 +2,20 @@
   <%= image_tag "logo.png" , { class: "img-fluid tsumiage"} %>
 <% end %>
 <nav class="nav my-2 my-md-0 mr-md-3">
-  <%= link_to "Users", users_path, { class: "nav-link p-2 text-dark" } %>
-  <%= link_to "Posts", "#" , { class: "nav-link p-2 text-dark" } %>
+  <%= link_to users_path, { class: "nav-link p-2 mr-2 text-dark" } do %>
+    <i class="fa fa-users" aria-hidden="true"></i>
+  <% end %>
+  <%= link_to index_posts_path , { class: "nav-link p-2 mr-2 text-dark" } do %>
+    <i class="fa fa-comment" aria-hidden="true"></i>
+  <% end %>
+  <%= link_to user_path(current_user), { class: "nav-link p-2 mr-4 text-dark" } do %>
+    <i class="fa fa-home" aria-hidden="true"></i>
+  <% end %>
   <div class="dropdown">
-    <button type="button" class="btn btn-dark-blue dropdown-toggle text-light" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button type="button" class="btn btn-dark-blue btn-sm dropdown-toggle text-light" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       My Account
     </button>
     <div class="dropdown-menu">
-      <%= link_to "プロフィール", user_path(current_user) , class: "dropdown-item" %>
       <%= link_to "編集", edit_user_path(current_user) , class: "dropdown-item"  %>
       <%= link_to "ログアウト", logout_path , method: :delete , class: "dropdown-item" %>
       <div class="dropdown-divider"></div>
