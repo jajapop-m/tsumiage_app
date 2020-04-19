@@ -6,7 +6,9 @@
       
         <%= render 'layouts/error_messages', model: f.object %>
         
-        <%= f.submit '投稿画面を拡大', name: "form_expansion" ,class: "btn btn-sm btn-purple-moon btn-rounded text-right expansion" %>
+        <%= f.button type: 'submit' , style: 'border-style: none;', name: "form_expansion" ,class: "expansion bg-light float-right" do %>
+          <i class="fa fa-expand" aria-hidden="true"></i>
+        <% end %>
         
         <%= f.text_area :title ,{ placeholder: "タイトル(50文字)", class: "form-control mb-2 title" } %>
   

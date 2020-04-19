@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-  <aside class="col-md-4">
+    <div class="col-12 col-md-4">
       <section class="user_info">
         <%= render 'users/user_info' %>
       </section>
@@ -9,8 +9,8 @@
           <%= render 'posts/post_form' %>
         </section>
       <% end %>
-    </aside>
-    <div class="col-md-8">
+    </div>
+    <div class="col-12 col-md-8">
       <% if @user.posts.any? %>
         <h3>投稿数(<%= @user.posts.count %>)</h3>
         <ol class="posts">

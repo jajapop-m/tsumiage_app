@@ -18,14 +18,19 @@
         <div class="card my-5">
           <div class="card-body">
             <p class="card-text">ユーザーを作成済みで、メールアドレスの確認がまだの方</p>
-            <%= link_to '確認メールの再送', resend_email_new_path, class: "btn btn-sm btn-green-moon btn-rounded" %>
+              <%= link_to resend_email_new_path, class: "btn btn-sm btn-green-moon btn-rounded" do %>
+            <i class="fa fa-envelope fa-sm" aria-hidden="true">確認メールの再送</i>
+            <% end %>
           </div>
         </div>
       </div>
       <div class="col-6">
         <div class="card my-5">
           <div class="card-body">
-            <%= link_to 'ログイン画面', login_path, class: "btn btn-sm btn-green-moon btn-rounded" %>
+            <p class="card-text">ログインの方はこちら</p>
+              <%= link_to login_path , { class: "btn btn-sm btn-green-moon btn-rounded" } do %>
+                <i class="fa fa-key fa-sm" aria-hidden="true">ログイン</i>
+              <% end %>
           </div>
         </div>
       </div>
