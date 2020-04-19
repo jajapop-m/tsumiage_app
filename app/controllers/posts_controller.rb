@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :logged_in_user, only: [:new, :create, :destroy]
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :correct_user, only: [:create, :update, :destroy]
   
   def index
     if logged_in?
@@ -29,7 +29,7 @@ class PostsController < ApplicationController
       render '/users/show'
     else
       @post = current_user.posts.build(post_params)
-      edit_empty_field(@post)
+      @post.edit_empty_field
       if @post.save
         flash[:success] = "投稿が完了しました。"
         redirect_to root_url
@@ -44,12 +44,6 @@ class PostsController < ApplicationController
     Post.find(params[:id]).destroy
     flash[:success] = "投稿を削除しました。"
     redirect_to user_url(current_user)
-  end
-  
-  
-  def edit_empty_field(post)
-    post.content = "by #{current_user.name}" if post.title.present? && post.content.blank?
-    post.title = "無題" if post.title.blank?
   end
   
   private
