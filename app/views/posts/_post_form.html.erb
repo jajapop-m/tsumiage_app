@@ -3,6 +3,7 @@
   <div class="row justify-content-center">
     <div class="col-12">
       <%= form_for(@post) do |f| %>
+      
         <%= render 'layouts/error_messages', model: f.object %>
         
         <%= f.submit '投稿画面を拡大', name: "form_expansion" ,class: "btn btn-sm btn-purple-moon btn-rounded text-right expansion" %>

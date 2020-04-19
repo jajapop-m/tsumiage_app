@@ -1,0 +1,12 @@
+<%= paginate @posts %>
+
+<ul class="posts">
+  <% @posts.each do |post| %>
+    <li>
+      <%= link_to post.user.name, post.user %>
+      <%= link_to post.title, post %>
+    </li>
+  <% end %>
+</ul>
+
+<%= paginate @posts %>

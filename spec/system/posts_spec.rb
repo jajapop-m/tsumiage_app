@@ -30,7 +30,7 @@ describe 'Post投稿機能' do
   end
   
   context '投稿が成功する場合' do
-    let(:time) { '前に投稿' }
+    let(:time) { user.posts.first.created_at.to_s(:published_on) }
     let(:alert) { '投稿が完了しました。' }
     
     context 'user画面で投稿ボタンが押された場合' do

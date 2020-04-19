@@ -2,12 +2,16 @@ class PostsController < ApplicationController
   before_action :logged_in_user, only: [:new, :create, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
   
-  def index
+  def home
     if logged_in?
       redirect_to current_user
     else
       redirect_to root_url
     end
+  end
+  
+  def index
+    @posts = Post.page(params[:page]).per(30)
   end
   
   def new
