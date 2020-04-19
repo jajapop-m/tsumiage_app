@@ -4,7 +4,9 @@
       <%= form_for(@post) do |f| %>
         <%= render 'layouts/error_messages', model: f.object %>
         
-        <%= f.submit '投稿画面を縮小', name: "form_reduction" ,class: "btn btn-sm btn-purple-moon btn-rounded text-right reduction" %>
+        <%= f.button type: 'submit' , style: 'border-style: none;', name: "form_reduction" ,class: "reduction bg-light float-right" do %>
+          <i class="fa fa-compress" aria-hidden="true"></i>
+        <% end %>
 
         <%= f.text_area :title ,{ placeholder: "タイトル(50文字以内で入力してください)", class: "form-control mb-2 title" } %>
   
