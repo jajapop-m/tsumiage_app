@@ -19,6 +19,7 @@ gem 'kaminari'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog',                     '1.40.0'
+gem 'font-awesome-sass', '~> 5.12.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
