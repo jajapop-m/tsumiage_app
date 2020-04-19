@@ -6,5 +6,8 @@ class Post < ApplicationRecord
   validates :title, presence:true, length:{ maximum: 50 }
   validates :content, presence: true
   
-  
+  def edit_empty_field
+    self.content = "by #{self.user.name}" if self.title.present? && self.content.blank?
+    self.title = "無題" if self.title.blank?
+  end
 end
