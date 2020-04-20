@@ -1,3 +1,6 @@
+host = '487918836f3748698f3d31a1c8119272.vfs.cloud9.ap-northeast-1.amazonaws.com'
+Rails.application.routes.default_url_options[:host] = host
+  
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 

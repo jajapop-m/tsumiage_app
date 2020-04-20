@@ -135,4 +135,30 @@ RSpec.describe 'Users controller', type: :request do
     #後で記述
     
   end
+  
+  describe 'アクティベーション' do
+    let!(:user_a) { FactoryBot.create(:user, activated: false) }
+    
+    it 'アクティベートURLにアクセスしてアクティベートされる' do
+      get edit_account_activation_path(user_a.activation_token, email: user_a.email)
+      expect(user_a.reload.activated?).to be_truthy
+    end
+  end
+    
+  # describe 'メール再送機能' do
+  #   let!(:user_a) { FactoryBot.create(:user, activated: false) }
+  #   before do
+  #     post resend_email_path, params: { resend_email: {email: user_a.email } }
+  #   end
+    
+  #   it 'メールが再送される' do
+  #     expect(response.body).to include '確認メールを再送しました。'
+  #   end
+    
+  #   it '確認メールのURLにアクセスしてアクティベートされる' do
+  #     user_a.reload
+  #     get edit_account_activation_path(user_a.activation_token, email: user_a.email)
+  #     expect(user_a.reload.activated?).to be_truthy
+  #   end
+  # end
 end
