@@ -8,7 +8,7 @@ class AccountActivationsController < ApplicationController
       redirect_to user_path(user)
     else
       flash[:danger] = "無効なリンクです。"
-      redirect_to resend_email_new_path
+      redirect_to new_resend_email_path
     end
   end
 

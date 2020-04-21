@@ -166,20 +166,51 @@ RSpec.describe 'Users controller', type: :request do
     end
   end
     
-  # describe 'メール再送機能' do
-  #   let!(:user_a) { FactoryBot.create(:user, activated: false) }
-  #   before do
-  #     post resend_email_path, params: { resend_email: {email: user_a.email } }
-  #   end
+  describe 'メール再送機能（resend_email_controller)' do
+    let!(:user_a) { FactoryBot.create(:user, activated: false) }
+    let!(:user_un) { FactoryBot.create(:user, activated: true) }
     
-  #   it 'メールが再送される' do
-  #     expect(response.body).to include '確認メールを再送しました。'
-  #   end
+    context '未アクティブユーザーのメールアドレスの場合' do
+      before do
+        post resend_emails_path, params: { resend_emails: { email: user_a.email } }
+      end
+      
+      it 'リクエストが成功し、root_urlにリダイレクトされる' do
+        expect(response.status).to eq 302
+        expect(response).to redirect_to root_url
+      end
+    end
     
-  #   it '確認メールのURLにアクセスしてアクティベートされる' do
-  #     user_a.save
-  #     get edit_account_activation_path(user_a.activation_token, email: user_a.email)
-  #     expect(user_a.reload.activated?).to be_truthy
-  #   end
-  # end
+    context 'アクティブ済みユーザーのメールアドレスの場合' do
+      before do
+        post resend_emails_path, params: { resend_emails: { email: user_un.email } }
+      end
+      
+      it 'リクエストが成功し、login_pathにリダイレクトされる' do
+        expect(response.status).to eq 302
+        expect(response).to redirect_to login_path
+      end
+    end
+    
+    context '登録されていないメールアドレスの場合' do
+      before do
+        post resend_emails_path, params: { resend_emails: { email: "wrong@example.com" } }
+      end
+      
+      it 'リクエストが成功し、new_pathにレンダーされる' do
+        expect(response.status).to eq 200
+      end
+      
+      it 'newテンプレートが表示される' do
+        expect(response.body).to include "メールアドレスの確認メールの再送"
+      end
+    end
+    # it '確認メールのURLにアクセスしてアクティベートされる' do
+    #   user_a.save
+    #   get edit_account_activation_path(user_a.activation_token, email: user_a.email)
+    #   expect(user_a.reload.activated?).to be_truthy
+    # end
+  end
+  
+  
 end
