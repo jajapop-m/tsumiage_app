@@ -205,11 +205,6 @@ RSpec.describe 'Users controller', type: :request do
         expect(response.body).to include "メールアドレスの確認メールの再送"
       end
     end
-    # it '確認メールのURLにアクセスしてアクティベートされる' do
-    #   user_a.save
-    #   get edit_account_activation_path(user_a.activation_token, email: user_a.email)
-    #   expect(user_a.reload.activated?).to be_truthy
-    # end
   end
   
   
