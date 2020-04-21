@@ -6,11 +6,11 @@
         <%= render 'layouts/error_messages', model: f.object %>
         <%= f.email_field :email ,{ placeholder: "メールアドレス", class: "form-control mb-2" } %>
   
-        <%= f.password_field :password ,{ placeholder: "パスワード", class: "form-control mb-2" }%>
-  
+        <%= f.password_field :password ,{ placeholder: "パスワード", class: "form-control mb-4" }%>
         <%= f.check_box :remember_me , class: "checkbox mb-3" %>
         <%= f.label :remember_me, "ログイン状態を保存"%>
-        <%= f.submit "ログイン", class: "btn btn-purple-moon btn-lg btn-rounded" %>
+        <%= f.submit "ログイン", class: "btn btn-purple-moon btn-rounded" %>
+        <p class="mt-3 small text-dark">パスワードを忘れた方は<%= link_to "こちら", new_password_reset_path %></p>
       <% end %>
       
       <div class="row">
@@ -18,7 +18,7 @@
           <div class="card my-5">
             <div class="card-body">
               <p class="card-text">ユーザーを作成済みで、メールアドレスの確認がまだの方</p>
-              <%= link_to '確認メールの再送', resend_email_new_path, class: "btn btn-sm btn-green-moon btn-rounded" %>
+              <%= link_to '確認メールの再送', new_resend_email_path, class: "btn btn-sm btn-green-moon btn-rounded" %>
             </div>
           </div>
         </div>

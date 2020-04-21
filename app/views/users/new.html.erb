@@ -10,7 +10,7 @@
   
         <%= f.password_field :password ,{ placeholder: "パスワード", class: "form-control mb-2" }%>
   
-        <%= f.password_field :password_confirmation ,{ placeholder: "パスワード（確認）", class: "form-control mb-2" } %>
+        <%= f.password_field :password_confirmation ,{ placeholder: "パスワード（確認）", class: "form-control mb-4" } %>
         <%= f.submit "登録", class: "btn btn-purple-moon btn-lg btn-rounded" %>
       <% end %>
     <div class="row">
@@ -18,7 +18,7 @@
         <div class="card my-5">
           <div class="card-body">
             <p class="card-text">ユーザーを作成済みで、メールアドレスの確認がまだの方</p>
-              <%= link_to resend_email_new_path, class: "btn btn-sm btn-green-moon btn-rounded" do %>
+              <%= link_to new_resend_email_path, class: "btn btn-sm btn-green-moon btn-rounded" do %>
             <i class="fa fa-envelope fa-sm" aria-hidden="true">確認メールの再送</i>
             <% end %>
           </div>

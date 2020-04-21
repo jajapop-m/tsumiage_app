@@ -4,10 +4,9 @@ class ResendEmailsController < UsersController
   end
   
   def create
-    @user = User.find_by(email: params[:resend_email][:email]) 
+    @user = User.find_by(email: params[:resend_emails][:email]) 
     if @user && !@user.activated?
       @user.create_activation_digest
-      @user.save
       @user.send_activation_email
       flash[:info] = "確認メールを再送しました。"
       redirect_to root_url
