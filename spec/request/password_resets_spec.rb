@@ -50,9 +50,12 @@ RSpec.describe 'Password Reset controller', type: :request do
   end
   
   # describe '#update' do
+  #   let(:token) { User.new_token }
   #   before do
-  #     token = User.new_token
   #     user.reset_digest = User.digest(token)
+  #     user.reset_sent_at = Time.zone.now
+  #     user.save
+  #     user.reload
   #     patch password_reset_path(token), params: { email: user.email,
   #       user: { password: 'new_password', password_confirmation: 'new_password' } }
   #   end
