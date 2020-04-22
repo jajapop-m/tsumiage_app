@@ -4,10 +4,11 @@ describe 'ユーザー基本機能', type: :system do
 
   describe 'パスワードリセット機能' do
     let!(:user) { FactoryBot.create(:user) }
+    let!(:password) { user.password }
     
     before do
       visit root_path
-      find('.login').click
+      find('.login-button').click
       find('.password-reset', text: 'こちら').click
     end
     
@@ -47,6 +48,18 @@ describe 'ユーザー基本機能', type: :system do
           
           it '成功アラートが表示され、ユーザー画面が表示される' do
             expect(page).to have_selector '.alert', text: 'パスワードを更新しました'
+            expect(page).to have_content user.name
+          end
+          
+          it '新しいパスワードでログインできる' do
+            find('.my-account').click
+            click_link 'ログアウト'
+            visit root_path
+            find('.login-button').click
+            fill_in 'メールアドレス', with: user.email
+            fill_in 'パスワード', with: 'new_password'
+            click_button 'ログイン'
+            expect(page).to have_selector '.alert', text: 'ログインが成功しました。'
             expect(page).to have_content user.name
           end
         end

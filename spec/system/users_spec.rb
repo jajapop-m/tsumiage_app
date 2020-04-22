@@ -1,11 +1,12 @@
 require 'rails_helper'
 
 describe 'ユーザー基本機能', type: :system do
+  let(:new_user) { FactoryBot.build(:new_user)}
   let(:user) { User.first }
   before do
     visit signup_path
-    fill_in 'ユーザー名', with: 'テストユーザー'
-    fill_in 'メールアドレス', with: 'test1@example.com'
+    fill_in 'ユーザー名', with: new_user.name
+    fill_in 'メールアドレス', with: new_user.email
     fill_in 'パスワード', with: 'password'
     fill_in 'パスワード（確認）', with: 'password'
   end
@@ -62,7 +63,7 @@ describe 'ユーザー基本機能', type: :system do
     
     before do
       visit root_path
-      find('.login').click
+      find('.login-button').click
       fill_in 'メールアドレス', with: user.email
       fill_in 'パスワード', with: user.password
       click_button 'ログイン'
@@ -99,7 +100,7 @@ describe 'ユーザー基本機能', type: :system do
         find('.my-account').click
         click_link 'ログアウト'
         visit root_path
-        find('.login').click
+        find('.login-button').click
         fill_in 'メールアドレス', with: user.email
         fill_in 'パスワード', with: 'new_password'
         click_button 'ログイン'
