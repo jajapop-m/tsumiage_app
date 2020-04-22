@@ -4,7 +4,7 @@ FactoryBot.define do
     sequence(:email) { Faker::Internet.email }
     password { 'password' }
     activated { true }
-    activated_at { Time.zone.now}
+    activated_at { Time.zone.now }
     
     after(:create) do |user|
       create_list(:post, 5, user: user)

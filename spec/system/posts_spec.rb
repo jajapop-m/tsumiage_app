@@ -1,5 +1,4 @@
 require 'rails_helper'
-include SessionsHelper
 
 describe 'Post機能' do
   let!(:user) { FactoryBot.create(:user, email: "test1@example.com") }

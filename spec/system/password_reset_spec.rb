@@ -11,7 +11,7 @@ describe 'ユーザー基本機能', type: :system do
       find('.password-reset', text: 'こちら').click
     end
     
-    it '' do
+    it 'パスワード再設定画面が表示される' do
       expect(page).to have_selector 'h1', text: 'パスワード再設定'
     end
     
