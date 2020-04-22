@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'resend_emails/new'
-
   root 'static_pages#home'
   get '/help', to: 'static_pages#help'
 
@@ -9,9 +7,6 @@ Rails.application.routes.draw do
   get    '/login', to: 'sessions#new'
   post   '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-  
-  get  '/resend_email/new', to: 'resend_emails#new'
-  post '/resend_email'    , to: 'resend_emails#create'
   
   resources :users
   
@@ -23,4 +18,6 @@ Rails.application.routes.draw do
   get '/posts', to: 'posts#home'
   
   resources :account_activations, only: [:edit]
+  resources :resend_emails,       only: [:new, :create]
+  resources :password_resets,     only: [:new, :create, :edit, :update]
 end

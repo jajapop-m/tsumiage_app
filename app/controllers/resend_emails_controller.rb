@@ -4,7 +4,7 @@ class ResendEmailsController < UsersController
   end
   
   def create
-    @user = User.find_by(email: params[:resend_email][:email]) 
+    @user = User.find_by(email: params[:resend_emails][:email]) 
     if @user && !@user.activated?
       @user.create_activation_digest
       @user.save

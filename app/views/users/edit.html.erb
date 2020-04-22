@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row text-center justify-content-center">
-  <h1 class="col-12 h3 mb-3 font-weight-normal">ユーザー情報の編集</h1>
+  <h1 class="col-12 h3 mb-5 font-weight-normal">ユーザー情報の編集</h1>
     <div class="signin col-md-6 col-md-offset-3">
       <%= form_for(@user) do |f| %>
         <%= render 'layouts/error_messages' , model: f.object %>
@@ -12,7 +12,7 @@
         <%= f.password_field :password ,{ placeholder: "パスワード", class: "form-control mb-2" }%>
   
         <%= f.password_field :password_confirmation ,{ placeholder: "パスワード（確認）", class: "form-control mb-2" } %>
-        <%= f.submit "登録", class: "btn btn-primary btn-lg btn-block mb-5" %>
+        <%= f.submit "編集", class: "btn btn-cool-blues btn-rounded my-4" %>
       <% end %>
       
       <% if current_user?(@user) %>
