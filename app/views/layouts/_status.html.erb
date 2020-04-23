@@ -1,0 +1,21 @@
+<% @user ||= current_user %>
+<div class="stats container">
+  <div class="row">
+    <div class="col">
+      <a href="<%= following_user_path(@user) %>">
+        <strong id="following" class="stat text-dark">
+          <%= @user.following.count %>
+        </strong>
+        <span class="text-secondary">フォロー中</span>
+      </a>
+    </div>
+    <div class="col">
+      <a href="<%= followers_user_path(@user) %>">
+        <strong id="followers" class="stat text-dark">
+          <%= @user.followers.count %>
+        </strong>
+        <span class="text-secondary">フォロワー</span>
+      </a>
+    </div>
+  </div>
+</div>
