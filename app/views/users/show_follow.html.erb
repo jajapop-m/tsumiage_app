@@ -10,6 +10,7 @@
       <% if @users.any? %>
         <div class="user_avatars">
           <% @users.each do |user| %>
+            <% user.name %>
           <% end %>
         </div>
       <% end %>

@@ -1,11 +1,12 @@
 require 'rails_helper'
+include SessionsHelper
 
 RSpec.describe 'Users controller', type: :request do
   
   describe '#show' do
     context 'ユーザーが存在する場合' do
       let!(:user) { FactoryBot.create(:user) }
-      
+
       before do
         get user_url(user)
       end

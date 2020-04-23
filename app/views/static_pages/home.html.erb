@@ -1,3 +1,7 @@
-<%= render 'static_pages/carousel' %>
-<%= render 'static_pages/news' %>
-<%= render 'static_pages/about' %>
+<% if logged_in? %>
+  <%= render 'users/user_page' %>
+<% else %>
+  <%= render 'static_pages/carousel' %>
+  <%= render 'static_pages/news' %>
+  <%= render 'static_pages/about' %>
+<% end %>

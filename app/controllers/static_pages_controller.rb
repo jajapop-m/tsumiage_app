@@ -1,6 +1,10 @@
 class StaticPagesController < ApplicationController
   def home
-    redirect_to user_path(current_user)  if logged_in?
+    if logged_in?
+      @user =  current_user
+      @post  = current_user.posts.build
+      @posts = current_user.feed.page(params[:page])
+    end
   end
 
   def help
