@@ -1,6 +1,6 @@
 <% user ||= @user %>
 <h4>
-  <%= image_tag user.image_name.thumb.url , class: "img-thumbnail rounded-circle d-block mx-auto" if user.image_name? %>
+  <%= image_tag user.image_name.thumb.url , class: "img-thumbnail rounded-circle d-block mx-auto" ,id: "profile-image"%>
   <div class="mt-3"><%= user.name %></div>
 </h4>
 <div style="white-space:pre-wrap" class="my-3">

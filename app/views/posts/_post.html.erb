@@ -1,15 +1,15 @@
 <li id="post-<%= post.id %>">
   <div class="container border card mb-3">
     <div class="row">
-      <div class="card-header col-12 p-1">
+      <div class="card-header col-12 p-0">
         <% if current_user? post.user %>
           <%= link_to root_path , class: "col-12 text-dark" do %>
-          <%= image_tag post.user.image_name.thumb50.url , class: "img-thumbnail rounded-circle"  if post.user.image_name? %>
+          <%= image_tag post.user.image_name.thumb50.url , class: "img-thumbnail rounded-circle" ,id:"profile-image-post"  %>
           <span class="m-2"><%= post.user.name %></span>
           <% end %>
         <% else %>
           <%= link_to post.user , class: "col-12 text-dark" do %>
-          <%= image_tag post.user.image_name.thumb50.url , class: "img-thumbnail rounded-circle"  if post.user.image_name? %>
+          <%= image_tag post.user.image_name.thumb50.url , class: "img-thumbnail rounded-circle" ,id: "profile-image-post" %>
           <span class="m-2"><%= post.user.name%></span>
           <% end %>
         <% end %>
