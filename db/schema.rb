@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200422133843) do
+ActiveRecord::Schema.define(version: 20200426062804) do
 
   create_table "posts", force: :cascade do |t|
     t.text "content"
@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 20200422133843) do
     t.datetime "activated_at"
     t.string "reset_digest"
     t.datetime "reset_sent_at"
+    t.text "profile"
+    t.string "image_name"
   end
 
 end
