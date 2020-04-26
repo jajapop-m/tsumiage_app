@@ -1,5 +1,6 @@
 User.create!(name:  "テストユーザー",
              email: "test@example.com",
+             profile: "自己紹介文が入ります。",
              password:              "password",
              password_confirmation: "password",
              activated: true,
@@ -9,9 +10,11 @@ User.create!(name:  "テストユーザー",
 99.times do |n|
   name  = Faker::Name.name
   email = "test-#{n+1}@example.com"
+  introduce = "自己紹介文が入ります。"
   password = "password"
   User.create!(name:  name,
               email: email,
+              profile: introduce,
               password:              password,
               password_confirmation: password,
               activated: true,
