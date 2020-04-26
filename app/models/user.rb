@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  mount_uploader :image_name, ImageNameUploader
   has_many :posts, dependent: :destroy
   has_many :active_relationships, class_name:  "Relationship",
                                   foreign_key: "following_id",
@@ -18,6 +19,7 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validates :profile, length: { maximum: 250 }
   
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :

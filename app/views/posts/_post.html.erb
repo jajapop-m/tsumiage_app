@@ -1,13 +1,21 @@
 <li id="post-<%= post.id %>">
   <div class="container border card mb-3">
     <div class="row">
-      <% if current_user? post.user %>
-        <span class="card-header col-12 p-1"><%= link_to post.user.name, root_path , class: "col-12 text-dark"%></span>
-      <% else %>
-        <span class="card-header col-12 p-1"><%= link_to post.user.name, post.user , class: "col-12 text-dark"%></span>
-      <% end %>
+      <div class="card-header col-12 p-1">
+        <% if current_user? post.user %>
+          <%= link_to root_path , class: "col-12 text-dark" do %>
+          <%= image_tag post.user.image_name.thumb50.url , class: "img-thumbnail rounded-circle"  if post.user.image_name? %>
+          <span class="m-2"><%= post.user.name %></span>
+          <% end %>
+        <% else %>
+          <%= link_to post.user , class: "col-12 text-dark" do %>
+          <%= image_tag post.user.image_name.thumb50.url , class: "img-thumbnail rounded-circle"  if post.user.image_name? %>
+          <span class="m-2"><%= post.user.name%></span>
+          <% end %>
+        <% end %>
+      </div>
       <span class="col-12 card-title mt-3"><%= link_to post.title, post_path(post), class: "col-12 text-dark strong" %></span>
-      <%= image_tag post.picture.url if post.picture? %>
+      <div class="col"><%= image_tag post.picture.url ,class: "img-fluid" if post.picture? %></div>
       <div style="white-space:pre-wrap" class="col-12 card-body"><%= post.content %></div>
       <div class="col-11 text-right card-footer">
         <small class="text-secondary">
