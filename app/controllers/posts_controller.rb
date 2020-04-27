@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :logged_in_user, only: [:new, :create, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
-  
+
   def home
     if logged_in?
       redirect_to current_user
@@ -27,10 +27,10 @@ class PostsController < ApplicationController
   end
   
   def create
-    if params[:form_expansion]
+    if params[:form_expansion]  #画面遷移
       @post = Post.new(post_params)
       render new_post_path(@post)
-    elsif params[:form_reduction]
+    elsif params[:form_reduction] #画面遷移
       @post = Post.new(post_params)
       @user = current_user
       @posts = @user.posts.page(params[:page]).per(30)
@@ -42,8 +42,8 @@ class PostsController < ApplicationController
         flash[:success] = "投稿が完了しました。"
         redirect_to root_url
       else
-        redirect_to user_path(current_user)
-        flash[:danger] = "投稿が失敗しました。"
+        flash.now[:danger] = "投稿が失敗しました。"
+        render '/posts/new'
       end
     end
   end
@@ -68,12 +68,11 @@ class PostsController < ApplicationController
   private
   
     def post_params
-      params.require(:post).permit(:title, :content, :picture)
+      params.require(:post).permit(:title, :content, :picture, :started_at, :ended_at)
     end
   
     def correct_user
       @post = current_user.posts.find_by(id: params[:id])
       redirect_to root_url if @post.nil?
     end
-    
 end

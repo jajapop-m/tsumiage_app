@@ -1,11 +1,16 @@
 <div class="container border card mb-3">
     <div class="row">
-      <span class="card-header col-12 p-0">
+      <div class="card-header col-12 p-0">
         <%= link_to @post.user , class: "col-12 text-dark" do %>
-        <%= image_tag @post.user.image_name.thumb50.url , class: "img-thumbnail rounded-circle" ,id: "profile-image"%>
+        <%= image_tag @post.user.image_name.thumb50.url , class: "img-thumbnail rounded-circle" ,id: "profile-image-post"%>
         <%= @post.user.name %>
         <% end %>
-      </span>
+        <span style="float:right" class="mt-2 mr-3"> 
+          <%= @post.started_at.strftime("%Y/%m/%d %H:%M") if @post.started_at %>
+          <%= "〜" if @post.started_at || @post.ended_at %>
+          <%= @post.ended_at.strftime("%Y/%m/%d %H:%M") if @post.ended_at %>
+        </span>
+      </div>
       <span class="col-12 card-title mt-3"><%= link_to @post.title, post_path(@post), class: "col-12 text-dark strong" %></span>
       <%= image_tag @post.picture.url if @post.picture? %>
       <div style="white-space:pre-wrap" class="col-12 card-body"><%= @post.content %></div>

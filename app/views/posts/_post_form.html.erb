@@ -13,6 +13,12 @@
         <%= f.text_area :title ,{ placeholder: "タイトル(50文字)", class: "form-control mb-2 title" } %>
   
         <%= f.text_area :content ,{ placeholder: "本文", class: "form-control mb-2 content", rows: "10" } %>
+        
+        <p>開始時間<%= f.datetime_field :started_at ,value: Time.zone.now.strftime("%Y-%m-%d %H:00") %></p>
+        
+        <p>〜
+        終了時間<%= f.datetime_field :ended_at ,value: Time.zone.now.strftime("%Y-%m-%d%H:00") %></p>
+        
         <span class="text-center"><%= f.file_field :picture , id: "picture" %></span>
     </div>
         <div class="col-md-6">
