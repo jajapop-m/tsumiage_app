@@ -1,0 +1,3 @@
+$("#time_form").html("<%= escape_javascript(render('posts/time_end')) %>");
+$("#post_count").html("投稿数(<%= current_user.posts.count %>)");
+$("#post-<%= @post.id %>").html
