@@ -1,0 +1,2 @@
+module TimePostsHelper
+end

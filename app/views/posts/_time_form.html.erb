@@ -1,0 +1,7 @@
+<div id="time_form">
+<% unless current_user.posts.find_by(time_started: true) %>
+  <%= render 'posts/time_start' %>
+<% else %>
+  <%= render 'posts/time_end' %>
+<% end %>
+</div>

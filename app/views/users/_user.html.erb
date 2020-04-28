@@ -3,7 +3,9 @@
   <%= link_to edit_user_path(@user), { class: "nav-link p-2 mr-4 text-dark" } do %>
   <i class="fas fa-edit fa-sm"></i>
   <% end %>
+  <%= render 'posts/time_form' %>
 <% end %>
+
 <h4>
   <%= image_tag user.image_name.thumb.url , class: "img-thumbnail rounded-circle d-block mx-auto" ,id: "profile-image"%>
   <div class="mt-3"><%= user.name %></div>

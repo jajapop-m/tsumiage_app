@@ -25,4 +25,5 @@ Rails.application.routes.draw do
   resources :resend_emails,       only: [:new, :create]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :relationships,       only: [:create, :destroy]
+  resources :time_posts,          only: [:create, :update, :destroy]
 end

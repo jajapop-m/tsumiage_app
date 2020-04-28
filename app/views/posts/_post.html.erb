@@ -13,7 +13,7 @@
             <span class="m-2"><%= post.user.name%></span>
             <% end %>
           <% end %>
-          <span style="float:right" class="mt-2 mr-3"> 
+          <span style="float:right" class="mt-2 mr-3" id="time_show"> 
             <%= post.started_at.strftime("%m/%d %H:%M") if post.started_at %>
             <%= "〜" if post.started_at || post.ended_at %>
             <%= post.ended_at.strftime("%H:%M") if post.ended_at %>

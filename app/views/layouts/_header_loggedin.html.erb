@@ -2,6 +2,10 @@
   <%= image_tag "logo.png" , { class: "img-fluid tsumiage"} %>
 <% end %>
 <nav class="nav my-2 my-md-0 mr-md-3">
+  <span id="clock_date"></span>
+<span id="clock_year"></span>
+<span id="clock_weeks"></span>
+<span id="clock_time"></span>
   <%= link_to users_path, { class: "nav-link p-2 mr-2 text-dark" } do %>
     <i class="fa fa-users" aria-hidden="true"></i>
   <% end %>
