@@ -18,6 +18,12 @@ Rails.application.routes.draw do
     collection do
       get 'index', as: :index
     end
+    
+    member do
+      post 'reply', to: 'replies#create', as: :reply
+      patch 'reply/:reply_id', to: 'replies#update'
+      delete 'reply/:reply_id', to: 'replies#destroy'
+    end
   end
   get '/posts', to: 'posts#home'
   

@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   mount_uploader :picture, PicturesUploader
   default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true
-  validates :title, presence:true, length:{ maximum: 50 }
+  validates :title, length:{ maximum: 50 }, allow_nil: true
   validates :content, presence: true
   validate :time_order
 
@@ -16,6 +16,10 @@ class Post < ApplicationRecord
     if started_at && ended_at && started_at > ended_at
       self.errors.add(:post, "終了時間は開始時間より後になるようにしてください。")
     end
+  end
+  
+  def reply(original_post)
+    update_attribute(:post_id, original_post.id)
   end
     
 end

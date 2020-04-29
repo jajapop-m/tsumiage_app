@@ -4,9 +4,6 @@
       <section class="user_info">
         <%= render 'users/user' %>
       </section>
-      <section class="status">
-        <%= render 'layouts/status' %>
-      </section>
       <section>
         <%= render 'users/follow_form' if logged_in? %>
       </section>
@@ -18,7 +15,6 @@
     </div>
     <div class="col-12 col-md-8">
       <% if @user.posts.any? %>
-        <h3 id="post_count">投稿数(<%= @user.posts.count %>)</h3>
         <ol class="posts">
           <%= render @posts %>
         </ol>

@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-9 pb-3">
+      <%= form_for(@new_reply, url: reply_post_path ) do |f| %>
+      
+        <%= render 'layouts/error_messages', model: f.object %>
+        
+        <%= f.text_area :content ,{ placeholder: "本文", class: "form-control mb-2 content", rows: "2" } %>
+        
+        <span class="text-center"><%= f.file_field :picture , id: "picture" %></span>
+    </div>
+        <div class="col-md-2 col-3">
+          <%= f.submit "投稿", class: "btn btn-green-moon btn-rounded btn-sm mt-3 post_request" %>
+        </div>
+      <% end %>
+  </div>
+</div>

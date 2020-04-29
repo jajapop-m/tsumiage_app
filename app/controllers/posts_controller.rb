@@ -11,7 +11,7 @@ class PostsController < ApplicationController
   end
   
   def index
-    @posts = Post.page(params[:page]).per(30)
+    @posts = Post.where(post_id: nil).page(params[:page]).per(30)
   end
   
   def new
@@ -19,7 +19,9 @@ class PostsController < ApplicationController
   end
   
   def show
-    @post = Post.find_by(id: params[:id])
+    @new_reply = Post.new
+    @post  = Post.find(params[:id])
+    @replies = Post.where(post_id: @post.id)
   end
   
   def edit
