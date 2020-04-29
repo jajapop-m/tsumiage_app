@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   def home
     if logged_in?
-      redirect_to current_user
+      redirect_to new_post_path
     else
       redirect_to root_url
     end
@@ -29,7 +29,7 @@ class PostsController < ApplicationController
   def create
     if params[:form_expansion]  #画面遷移
       @post = Post.new(post_params)
-      render new_post_path(@post)
+      render new_post_path
     elsif params[:form_reduction] #画面遷移
       @post = Post.new(post_params)
       @user = current_user

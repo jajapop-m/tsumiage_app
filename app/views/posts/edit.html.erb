@@ -8,6 +8,11 @@
 
       <%= f.text_area :content ,{ placeholder: "本文を入力してください。", class: "form-control mb-2 content", rows: "12" } %>
     
+      <div class="row">
+        <div class="col-md-6 text-center">開始時間<%= f.datetime_select :started_at %></div>
+        <div class="col-md-6 text-center">終了時間<%= f.datetime_select :ended_at   %></div>
+      </div>
+    
       <%= f.file_field :picture %>
       
       <%= f.submit "編集", class: "btn btn-purple-moon btn-lg btn-rounded post_request mx-auto d-block" %>

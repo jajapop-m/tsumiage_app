@@ -1,3 +1,5 @@
+<% hour = Time.zone.now.hour %>
+
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-12">
@@ -12,11 +14,10 @@
   
         <%= f.text_area :content ,{ placeholder: "本文を入力してください。", class: "form-control mb-2 content", rows: "12" } %>
         
-        開始時間<%= f.datetime_field :started_at ,value: Time.zone.now.strftime("%Y-%m-%d %H:%M") %>
-        
-        〜
-        終了時間<%= f.datetime_field :ended_at ,value: Time.zone.now.strftime("%Y-%m-%d %H:00") %></p>
-      
+        <div class="row">
+          <div class="col-md-6 text-center">開始時間<%= f.datetime_select :started_at ,{default: Date.today + (hour-1).hour} %></div>
+          <div class="col-md-6 text-center">終了時間<%= f.datetime_select :ended_at ,{default: Date.today + hour.hour} %></div>
+        </div>
         <span class="picture"><%= f.file_field :picture %></span>
       </div>
         <div>
