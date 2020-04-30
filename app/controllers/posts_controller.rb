@@ -64,7 +64,7 @@ class PostsController < ApplicationController
   def destroy
     Post.find(params[:id]).destroy
     flash[:success] = "投稿を削除しました。"
-    redirect_to user_url(current_user)
+    redirect_to request.referer || user_url(current_user)
   end
   
   private

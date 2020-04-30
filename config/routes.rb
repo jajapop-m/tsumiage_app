@@ -20,9 +20,9 @@ Rails.application.routes.draw do
     end
     
     member do
-      post 'reply', to: 'replies#create', as: :reply
-      patch 'reply/:reply_id', to: 'replies#update'
-      delete 'reply/:reply_id', to: 'replies#destroy'
+      post   'reply', to: 'replies#create', as: :reply
+      get    'reply', to:'replies#edit'
+      patch  'reply', to: 'replies#update'
     end
   end
   get '/posts', to: 'posts#home'

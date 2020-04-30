@@ -1,5 +1,6 @@
 class RepliesController < PostsController
-  before_action :correct_user, only: [:update, :destroy]
+  before_action :logged_in_user, only: [:create]
+  before_action :correct_user, only: [:update]
   
   def create
     @reply_post = current_user.posts.build(reply_params)
@@ -11,13 +12,6 @@ class RepliesController < PostsController
   end
   
   def update
-  end
-  
-  def destroy
-    original_post = Post.find(params[:id])
-    Post.find(params[:reply_id]).destroy
-    flash[:success] = "リプライを削除しました。"
-    redirect_to original_post
   end
   
   private
