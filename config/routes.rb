@@ -21,8 +21,6 @@ Rails.application.routes.draw do
     
     member do
       post   'reply', to: 'replies#create', as: :reply
-      get    'reply', to:'replies#edit'
-      patch  'reply', to: 'replies#update'
     end
   end
   get '/posts', to: 'posts#home'
