@@ -18,6 +18,10 @@ Rails.application.routes.draw do
     collection do
       get 'index', as: :index
     end
+    
+    member do
+      post   'reply', to: 'replies#create', as: :reply
+    end
   end
   get '/posts', to: 'posts#home'
   

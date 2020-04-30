@@ -1,17 +1,19 @@
 class PostsController < ApplicationController
   before_action :logged_in_user, only: [:new, :create, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
-
+  
+  @@request_referer = nil
+  
   def home
     if logged_in?
-      redirect_to current_user
+      redirect_to new_post_path
     else
       redirect_to root_url
     end
   end
   
   def index
-    @posts = Post.page(params[:page]).per(30)
+    @posts = Post.where(post_id: nil).page(params[:page]).per(30)
   end
   
   def new
@@ -19,17 +21,20 @@ class PostsController < ApplicationController
   end
   
   def show
-    @post = Post.find_by(id: params[:id])
+    @new_reply = Post.new
+    @post  = Post.find(params[:id])
+    @replies = Post.where(post_id: @post.id)
   end
   
   def edit
     @post = Post.find(params[:id])
+    @@request_referer = request.referer
   end
   
   def create
     if params[:form_expansion]  #画面遷移
       @post = Post.new(post_params)
-      render new_post_path(@post)
+      render new_post_path
     elsif params[:form_reduction] #画面遷移
       @post = Post.new(post_params)
       @user = current_user
@@ -52,7 +57,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     if @post.update_attributes(post_params)
       flash[:success] = "編集が完了しました。"
-      redirect_to current_user
+      redirect_to @@request_referer || current_user
     else
       flash[:danger] = "編集が失敗しました。"
       render 'edit'
@@ -62,7 +67,7 @@ class PostsController < ApplicationController
   def destroy
     Post.find(params[:id]).destroy
     flash[:success] = "投稿を削除しました。"
-    redirect_to user_url(current_user)
+    redirect_to request.referer || user_url(current_user)
   end
   
   private

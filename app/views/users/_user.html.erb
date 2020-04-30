@@ -1,9 +1,9 @@
 <% user ||= @user %>
 <% if current_user? user %>
+  <%= render 'posts/time_form' %>
   <%= link_to edit_user_path(@user), { class: "nav-link p-2 mr-4 text-dark" } do %>
   <i class="fas fa-edit fa-sm"></i>
   <% end %>
-  <%= render 'posts/time_form' %>
 <% end %>
 
 <h4>
@@ -11,6 +11,16 @@
   <div class="mt-3"><%= user.name %></div>
 </h4>
 
+<div>
+  <% if @user.posts.any? %>
+  <h6 id="post_count"></h6>投稿数(<%= @user.posts.count %>)</h6>
+  <% end %>
+</div>
+
 <div style="white-space:pre-wrap" class="my-3">
 <%= user.profile%>
 </div>
+
+<section class="status">
+  <%= render 'layouts/status' %>
+</section>

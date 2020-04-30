@@ -23,6 +23,15 @@
       <div class="col"><%= image_tag post.picture.url ,class: "img-fluid" if post.picture? %></div>
       <div style="white-space:pre-wrap" class="col-12 card-body"><%= post.content %></div>
       <div class="col-11 text-right card-footer">
+        
+        <%= link_to post_path(post) ,class: "text-dark" do %>
+          <span class="float-left ml-3"><i class="fas fa-reply"></i></span>
+          <% post_count = Post.where(post_id: post).count %>
+          <% if post_count.nonzero? %>
+            <small class="float-left ml-2">(<%= post_count %>)</small>
+          <% end %>
+        <% end %>
+        
         <small class="text-secondary">
           <%= post.created_at.to_s(:published_on) %>
         </small>
