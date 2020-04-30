@@ -1,7 +1,9 @@
 class PostsController < ApplicationController
   before_action :logged_in_user, only: [:new, :create, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
-
+  
+  @@request_referer = nil
+  
   def home
     if logged_in?
       redirect_to new_post_path
@@ -26,6 +28,7 @@ class PostsController < ApplicationController
   
   def edit
     @post = Post.find(params[:id])
+    @@request_referer = request.referer
   end
   
   def create
@@ -54,7 +57,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     if @post.update_attributes(post_params)
       flash[:success] = "編集が完了しました。"
-      redirect_to current_user
+      redirect_to @@request_referer || current_user
     else
       flash[:danger] = "編集が失敗しました。"
       render 'edit'

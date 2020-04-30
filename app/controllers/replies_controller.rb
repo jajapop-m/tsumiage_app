@@ -11,9 +11,6 @@ class RepliesController < PostsController
     redirect_to original_post
   end
   
-  def update
-  end
-  
   private
   
     def reply_params
