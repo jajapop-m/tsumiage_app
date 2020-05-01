@@ -1,7 +1,7 @@
 <% @user ||= current_user %>
 <div class="stats container">
-  <div class="row text-right">
-    <div class="col">
+  <div class="row text-right justify-content-center">
+    <div class="col-6 text-center">
       <a href="<%= following_user_path(@user) %>">
         <strong id="following" class="stat text-dark">
           <%= @user.following.count %>
@@ -9,7 +9,7 @@
         <span class="text-secondary text-right">フォロー中</span>
       </a>
     </div>
-    <div class="col">
+    <div class="col-6 text-center">
       <a href="<%= followers_user_path(@user) %>">
         <strong id="followers" class="stat text-dark">
           <%= @user.followers.count %>

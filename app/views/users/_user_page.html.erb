@@ -4,9 +4,6 @@
       <section class="user_info">
         <%= render 'users/user' %>
       </section>
-      <section>
-        <%= render 'users/follow_form' if logged_in? %>
-      </section>
       <% if current_user?(@user) %>
         <section class="py-5 text-right">
           <%= render 'posts/post_form' %>
@@ -15,7 +12,7 @@
     </div>
     <div class="col-12 col-md-8">
       <% if @user.posts.any? %>
-        <ol class="posts">
+        <ol class="posts pl-0">
           <%= render @posts %>
         </ol>
         <%= paginate @posts %>

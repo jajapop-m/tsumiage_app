@@ -3,16 +3,18 @@
     <div class="row">
       <div class="card-header p-0 col-12">
           <% if current_user? post.user %>
-            <%= link_to root_path , class: "col-12 text-dark" do %>
+            <%= link_to root_path , class: "col-12 text-dark", 'data-toggle': "modal", 'data-target': "#userModal" do %>
             <%= image_tag post.user.image_name.thumb50.url , class: "img-thumbnail rounded-circle" ,id:"profile-image-post"  %>
             <span class="m-2"><%= post.user.name %></span>
             <% end %>
           <% else %>
-            <%= link_to post.user , class: "col-12 text-dark" do %>
+            <%= link_to post.user , class: "col-12 text-dark", 'data-toggle': "modal", 'data-target': "#userModal" do %>
             <%= image_tag post.user.image_name.thumb50.url , class: "img-thumbnail rounded-circle" ,id: "profile-image-post" %>
             <span class="m-2"><%= post.user.name%></span>
             <% end %>
           <% end %>
+          <%= render 'users/user_modal' %>
+          
           <span style="float:right" class="mt-2 mr-3" id="time_show"> 
             <%= post.started_at.strftime("%m/%d %H:%M") if post.started_at %>
             <%= "〜" if post.started_at || post.ended_at %>
