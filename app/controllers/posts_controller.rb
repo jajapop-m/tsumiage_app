@@ -22,6 +22,7 @@ class PostsController < ApplicationController
     @new_reply = Post.new
     @post  = Post.find(params[:id])
     @replies = Post.where(post_id: @post.id)
+    redirect_to post_path(id: @post.post_id) if @post.post_id #replyのshow画面を表示させない。
   end
   
   def edit

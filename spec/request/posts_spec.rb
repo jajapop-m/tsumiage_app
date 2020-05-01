@@ -6,15 +6,11 @@ RSpec.describe 'Posts controller', type: :request do
   describe 'GET #index' do
     context 'ログインしていない場合' do
       before do
-        get posts_path
+        get index_posts_path
       end
       
       it 'リクエストが成功する' do
-        expect(response.status).to eq 302
-      end
-      
-      it 'root_urlにリダイレクトされること' do
-        expect(response).to redirect_to root_url
+        expect(response.status).to eq 200
       end
     end
     
@@ -23,15 +19,11 @@ RSpec.describe 'Posts controller', type: :request do
         post login_path, params: { session: { email: user.email,
                                       password: user.password,
                                       remember_me: '1'} }
-        get posts_path
+        get index_posts_path
       end
       
       it 'リクエストが成功する' do
-        expect(response.status).to eq 302
-      end
-      
-      it 'current_userにリダイレクトされること' do
-        expect(response).to redirect_to user_path(user)
+        expect(response.status).to eq 200
       end
     end
   end
@@ -56,11 +48,11 @@ RSpec.describe 'Posts controller', type: :request do
         post login_path, params: { session: { email: user.email,
                                       password: user.password,
                                       remember_me: '1'} }
-        get posts_path
+        get new_post_path
       end
       
       it 'リクエストが成功する' do
-        expect(response).to redirect_to user_path(user)
+        expect(response.status).to eq 200
       end
     end
   end

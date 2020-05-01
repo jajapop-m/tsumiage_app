@@ -182,6 +182,7 @@ describe 'Post機能' do
       it '編集した内容が表示される' do
         expect(page).to have_link title_af
         expect(page).to have_content content_af
+        expect(page).not_to have_content user.posts.second.content
       end
     end
       
