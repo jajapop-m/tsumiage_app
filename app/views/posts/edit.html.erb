@@ -11,7 +11,7 @@
         <%= f.text_area :content ,{ placeholder: "本文を入力してください。", class: "form-control mb-2 content", rows: "12" } %>
         
         <% if original_form %>
-          <div class="row">
+          <div class="row time-form">
             <div class="col-md-6 text-center">開始時間<%= f.datetime_select :started_at %></div>
             <div class="col-md-6 text-center">終了時間<%= f.datetime_select :ended_at   %></div>
           </div>

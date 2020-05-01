@@ -8,8 +8,10 @@ FactoryBot.define do
     
     after(:create) do |user|
       create_list(:post, 5, user: user)
+      user.profile = '自己紹介文'
     end
   end
+  
   
   factory :admin, class: User do
     name { Faker::Name.name }

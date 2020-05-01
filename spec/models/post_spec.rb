@@ -18,13 +18,6 @@ RSpec.describe Post, type: :model do
       expect(post).not_to be_valid
     end
     
-    it 'titleが空欄' do
-      post = Post.new(title: "　",
-                  content: "コンテンツテスト",
-                  user_id: user.id)
-      expect(post).not_to be_valid
-    end
-    
     it 'contentが空欄' do
       post = Post.new(title: "ポストテスト",
                   content: "　",

@@ -6,7 +6,9 @@ FactoryBot.define do
   factory :post do
     sequence(:title) { Faker::Lorem.sentence }
     sequence(:content) { Faker::Lorem.sentence(word_count: 30) }
-    picture { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/test.jpg')) }
+    # picture { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/test.jpg')) 
     user
   end
+  
+  
 end
