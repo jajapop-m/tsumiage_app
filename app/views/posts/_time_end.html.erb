@@ -1,4 +1,4 @@
 <%= form_for(current_user.posts.find_by(time_started: true) ,
               url: time_post_path(current_user.posts.find_by(time_started: true)), remote: true ) do |f| %>
-  <%= f.submit "END", class: "btn btn-pink-moon btn-rounded btn-block btn-sm" %>
+  <%= f.submit "END", class: "btn btn-pink-moon btn-rounded btn-block btn-sm time-end" %>
 <% end %>

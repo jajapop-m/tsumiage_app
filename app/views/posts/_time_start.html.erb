@@ -1,4 +1,4 @@
 <%= form_for(current_user.posts.new,
              url: { controller: :time_posts, action: :create }, remote: true) do |f| %>
-  <%= f.submit "START", class: "btn btn-cool-blues btn-rounded btn-block btn-sm" %>
+  <%= f.submit "START", class: "btn btn-cool-blues btn-rounded btn-block btn-sm time-start" %>
 <% end %>
