@@ -1,6 +1,6 @@
 FactoryBot.define do
   trait :picture_build do
-   picture { File.new("#{Rails.root}/spec/fixtures/picture.jpg") }
+  picture { File.new("#{Rails.root}/spec/fixtures/picture.jpg") }
   end
 
   factory :post do

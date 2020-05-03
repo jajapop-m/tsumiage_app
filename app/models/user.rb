@@ -59,6 +59,7 @@ class User < ApplicationRecord
     UserMailer.password_reset(self).deliver_now
   end
   
+  
   def create_activation_digest
     self.activation_token = User.new_token
     self.activation_digest = User.digest(activation_token)

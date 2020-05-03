@@ -26,7 +26,7 @@ RSpec.describe UserMailer, type: :mailer do
 
     it "renders the headers" do
       user.create_reset_digest
-      expect(mail.subject).to eq("[Tsumiage]パスワード変更メール")
+      expect(mail.subject).to eq("[Tsumiage]パスワード変更")
       expect(mail.to).to eq([user.email])
       expect(mail.from).to eq(["noreply@tsumiage.com"])
     end
