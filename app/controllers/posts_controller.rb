@@ -14,6 +14,7 @@ class PostsController < ApplicationController
     posts = Post.where(post_id: nil)
     @q = posts.ransack(params[:q])
     @posts = @q.result(distinct: true).page(params[:page]).per(30)
+    @path = index_posts_path
   end
   
   def new
