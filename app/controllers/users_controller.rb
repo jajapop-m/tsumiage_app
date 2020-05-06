@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :correct_user , only: [:edit, :destroy]
 
 
-  def index 
+  def index
     @q = User.ransack(params[:q])
     users = @q.result(distinct: true)
     @users = users.page(params[:page]).per(30)
