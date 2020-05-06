@@ -1,0 +1,17 @@
+<%= search_form_for @q, url: index_posts_path, html: { method: :post } do |f| %>
+  <div class="row">
+    <div class="col-md-2"></div>
+      <%= f.label :title_or_content, "投稿検索", class:"col-3 col-md-2 col-form-label text-right mb-2" %>
+      <%= f.search_field :title_or_content_cont ,class: "form-control serch_form col-6 col-md-4 mb-2" %>
+    <div class="col-md-4 col-3"></div>
+    <div class="col-md-2"></div>
+      <%= f.label :started_at, "日付検索", class:"col-3 col-md-2 col-form-label text-right" %>
+      <%= f.date_field :started_at_or_created_at_gteq ,class: "form-control serch_form col-6 col-md-4 mb-2" %>
+    <div class="col-md-4 col-3"></div>
+    <div class="col-md-2"></div>
+      <%= f.label :started_at, "〜", class:"col-3 col-md-2 col-form-label text-right" %>
+      <%= f.date_field :ended_at_or_created_at_lteq_end_of_day ,class: "form-control serch_form col-6 col-md-4" %>
+    
+    <%= f.submit "検索", class: "btn btn-purple-moon btn-rounded ml-2" %>
+  </div>
+<% end %>

@@ -11,7 +11,9 @@ class PostsController < ApplicationController
   end
   
   def index
-    @posts = Post.where(post_id: nil).page(params[:page]).per(30)
+    posts = Post.where(post_id: nil)
+    @q = posts.ransack(params[:q])
+    @posts = @q.result(distinct: true).page(params[:page]).per(30)
   end
   
   def new
