@@ -1,4 +1,4 @@
-<%= search_form_for @q, url: index_posts_path, html: { method: :post } do |f| %>
+<%= search_form_for @q, object: "Post", url: @path do |f| %>
   <div class="row">
     <div class="col-md-2"></div>
       <%= f.label :title_or_content, "投稿検索", class:"col-3 col-md-2 col-form-label text-right mb-2" %>
@@ -12,6 +12,6 @@
       <%= f.label :started_at, "〜", class:"col-3 col-md-2 col-form-label text-right" %>
       <%= f.date_field :ended_at_or_created_at_lteq_end_of_day ,class: "form-control serch_form col-6 col-md-4" %>
     
-    <%= f.submit "検索", class: "btn btn-purple-moon btn-rounded ml-2" %>
+    <%= f.submit "検索", class: "btn btn-purple-moon btn-rounded ml-2 mb-3" %>
   </div>
 <% end %>

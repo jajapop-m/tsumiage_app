@@ -12,9 +12,14 @@
   <%= link_to index_posts_path , { class: "nav-link p-2 mr-2 text-dark" } do %>
     <i class="fas fa-comments" aria-hidden="true"></i>
   <% end %>
+  <%= link_to current_user, { class: "nav-link p-2 mr-2 text-dark" } do %>
+    <i class="fas fa-comment" aria-hidden="true"></i>
+  <% end %>
   <%= link_to root_path, { class: "nav-link p-2 mr-4 text-dark" } do %>
     <i class="fa fa-home" aria-hidden="true"></i>
   <% end %>
+  
+  
   <div class="dropdown">
     <button type="button" class="btn btn-dark-blue btn-sm dropdown-toggle text-light my-account" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       My Account

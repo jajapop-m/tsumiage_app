@@ -16,7 +16,12 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @post = Post.new if current_user? @user
-    @posts = @user.posts.where(post_id: nil).page(params[:page]).per(30)
+    
+    posts = @user.posts.where(post_id: nil)
+    @q = posts.ransack(params[:q])
+    @posts = @q.result(distinct: true).page(params[:page]).per(30)
+    
+    @path = user_path(@user)
   end
   
   def create

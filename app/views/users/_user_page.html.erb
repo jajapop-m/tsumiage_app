@@ -12,6 +12,7 @@
     </div>
     <div class="col-12 col-md-8">
       <% if @user.posts.any? %>
+      <%= render 'posts/serch_form' if @q %>
         <ol class="posts pl-0">
           <%= render @posts %>
         </ol>
