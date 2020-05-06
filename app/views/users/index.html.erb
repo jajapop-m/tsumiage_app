@@ -1,11 +1,17 @@
 <%= render 'users/serch_form' %>
 
 <%= paginate @users %>
-
-<ul class="users">
+<div class="container">
+  <ul class="users list-group">
   <% @users.each do |user| %>
-    <li>
-      <%= link_to user.name, user ,'data-toggle': "modal", 'data-target': "#userModal-#{user.id}" %>
+    <li class="list-group-item rounded-lg">
+      <div class="media">
+        <%= link_to user ,'data-toggle': "modal", 'data-target': "#userModal-#{user.id}" do %>
+          <%= image_tag user.image_name.thumb50.url, class: "img-thumbnail rounded-circle align-self-start profile-image-post"%>
+        <% end %>
+        <div class="media-body ml-3">
+        <h5><%= link_to user.name, user ,'data-toggle': "modal", 'data-target': "#userModal-#{user.id}" %></h5>
+        <p><%= user.profile %></p>
       <!--モーダル部分ここから-->
           <div class="modal" id="userModal-<%= user.id %>" tabindex="-1" role="dialog" aria-labelledby="userModal-<%=user.id %>Label" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
@@ -29,9 +35,7 @@
               <div class="mx-3">
                 
               </div>
-              <div style="white-space:pre-wrap" class="mx-3">
-              <%= user.profile%>
-              </div>
+              <div style="white-space:pre-wrap" class="mx-3"><%= user.profile%></div>
             </div>
             <div class="modal-footer">
               <%= render 'layouts/status' %>
@@ -40,9 +44,11 @@
           </div>
           </div>
           </div>
-          <!--モーダル部分ここまで-->
+      <!--モーダル部分ここまで-->
+        </div>
+      </div>
     </li>
   <% end %>
 </ul>
-
+</div>
 <%= paginate @users %>
