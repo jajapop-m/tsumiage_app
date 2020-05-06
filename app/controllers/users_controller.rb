@@ -4,7 +4,9 @@ class UsersController < ApplicationController
 
 
   def index 
-    @users = User.page(params[:page]).per(30)
+    @q = User.ransack(params[:q])
+    users = @q.result(distinct: true)
+    @users = users.page(params[:page]).per(30)
   end
   
   def new
