@@ -1,9 +1,9 @@
+<%= render 'posts/serch_form' %>
+
 <%= paginate @posts %>
 
 <ul class="posts">
-  
       <%= render @posts, partial: '/posts/post' %>
-  
 </ul>
 
 <%= paginate @posts %>

@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   
   resources :posts, except: [:index] do
     collection do
-      get 'index', as: :index
+      match  'index', via: [:get, :post], as: :index
     end
     
     member do
