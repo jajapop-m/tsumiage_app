@@ -1,6 +1,9 @@
 <%= search_form_for @q do |f| %>
-  <%= f.label :name, "Keyword" %>
-  <%= f.search_field :name_cont %>
-
-  <%= f.submit "検索" %>
+  <div class="form-group row">
+    <div class="col-md-2"></div>
+    <%= f.label :name_or_profile, "ユーザー検索", class:"col-3 col-md-2 col-form-label text-right" %>
+    <%= f.search_field :name_or_profile_cont ,class: "form-control serch_form col-6 col-md-4" %>
+  
+    <%= f.submit "検索", class: "btn btn-purple-moon btn-rounded" %>
+  </div>
 <% end %>
