@@ -51,14 +51,11 @@ class User < ApplicationRecord
     self.update_attribute(:activated_at, Time.zone.now)
   end
   
-  def send_activation_email
-    UserMailer.account_activation(self).deliver_now
+  [["account", "activation"],["password", "reset"]].each do |subname, name|
+    define_method("send_#{name}_email") do
+      UserMailer.send("#{subname}_#{name}", self).deliver_now
+    end
   end
-  
-  def send_reset_email
-    UserMailer.password_reset(self).deliver_now
-  end
-  
   
   def create_activation_digest
     self.activation_token = User.new_token
