@@ -20,7 +20,7 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   validates :profile, length: { maximum: 250 }
-  
+
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
@@ -45,54 +45,74 @@ class User < ApplicationRecord
   def forget
     update_attribute(:remember_digest, nil)
   end
-  
+
   def activate
     self.update_attribute(:activated, true)
     self.update_attribute(:activated_at, Time.zone.now)
   end
-  
-  [["account", "activation"],["password", "reset"]].each do |subname, name|
-    define_method("send_#{name}_email") do
-      UserMailer.send("#{subname}_#{name}", self).deliver_now
+
+  #refactoring v1
+  # [["account", "activation"],["password", "reset"]].each do |subname, name|
+  #   define_method("send_#{name}_email") do
+  #     UserMailer.send("#{subname}_#{name}", self).deliver_now
+  #   end
+  # end
+
+  #refactoring v2
+  def method_missing(name)
+    super if !name.match(/^send_(.+)_email$/)
+    name.match(/^send_(.+)_email$/) do
+      case $1
+      when "activation"
+        UserMailer.account_activation(self).deliver_now
+      when "reset"
+        UserMailer.password_reset(self).deliver_now
+      else
+        super
+      end
     end
   end
-  
+
+  def respond_to_missing?(method, include_private = false)
+    (method == :send_activation_email) || (method == :send_reset_email) || super
+  end
+
   def create_activation_digest
     self.activation_token = User.new_token
     self.activation_digest = User.digest(activation_token)
   end
-  
+
   def create_reset_digest
     self.reset_token = User.new_token
     update_attribute(:reset_digest,  User.digest(reset_token))
     update_attribute(:reset_sent_at, Time.zone.now)
   end
-  
+
   def password_reset_expired?
     reset_sent_at < 30.minutes.ago
   end
-  
+
   def follow(other_user)
     following << other_user
   end
-  
+
   def unfollow(other_user)
     self.active_relationships.find_by(followed_id: other_user.id).destroy
   end
-  
+
   def following?(other_user)
     following.include?(other_user)
   end
-  
+
   def feed
     following_ids = "SELECT followed_id FROM relationships
                      WHERE following_id = :user_id"
     Post.where("user_id IN (#{following_ids})
                      OR user_id = :user_id", user_id: id)
   end
-  
+
   private
-  
+
     def email_downcase
       self.email = email.downcase if email
     end
