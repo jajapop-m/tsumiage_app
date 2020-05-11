@@ -51,31 +51,31 @@ class User < ApplicationRecord
     self.update_attribute(:activated_at, Time.zone.now)
   end
 
-  #refactoring v1
-  # [["account", "activation"],["password", "reset"]].each do |subname, name|
-  #   define_method("send_#{name}_email") do
-  #     UserMailer.send("#{subname}_#{name}", self).deliver_now
-  #   end
-  # end
-
-  #refactoring v2
-  def method_missing(name)
-    super if !name.match(/^send_(.+)_email$/)
-    name.match(/^send_(.+)_email$/) do
-      case $1
-      when "activation"
-        UserMailer.account_activation(self).deliver_now
-      when "reset"
-        UserMailer.password_reset(self).deliver_now
-      else
-        super
-      end
+  # refactoring v1
+  [["account", "activation"],["password", "reset"]].each do |subname, name|
+    define_method("send_#{name}_email") do
+      UserMailer.send("#{subname}_#{name}", self).deliver_now
     end
   end
 
-  def respond_to_missing?(method, include_private = false)
-    (method == :send_activation_email) || (method == :send_reset_email) || super
-  end
+  #refactoring v2
+  # def method_missing(name)
+  #   super if !name.match(/^send_(.+)_email$/)
+  #   name.match(/^send_(.+)_email$/) do
+  #     case $1
+  #     when "activation"
+  #       UserMailer.account_activation(self).deliver_now
+  #     when "reset"
+  #       UserMailer.password_reset(self).deliver_now
+  #     else
+  #       super
+  #     end
+  #   end
+  # end
+  #
+  # def respond_to_missing?(method, include_private = false)
+  #   (method == :send_activation_email) || (method == :send_reset_email) || super
+  # end
 
   def create_activation_digest
     self.activation_token = User.new_token
