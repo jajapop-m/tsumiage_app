@@ -1,18 +1,1 @@
 version: 2
-
-jobs:
-  test:
-    docker:
-      - image: circleci/ruby:2.6.3
-    working_directory:
-    steps:
-      - checkout
-      - run:
-          name: Run test
-          command:
-
-workflows:
-  version: 2
-  workflows:
-    jobs:
-      - test
