@@ -9,7 +9,7 @@ jobs:
       - checkout
       - run:
           name: Run test
-          command: 'ruby test_sum.rb'
+          command: 'bundle exec rspec'
 
 workflows:
   version: 2
