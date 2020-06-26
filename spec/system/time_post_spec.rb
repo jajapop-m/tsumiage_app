@@ -41,7 +41,7 @@ describe 'Time Post機能', type: :system do
         click_link '編集'
         find('.title').set(title)
         find('.content').set(content)
-        click_button '編集'
+        click_on '編集'
         visit user
       end
 
