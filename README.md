@@ -1,24 +1,19 @@
 # README
+*Tsumiage*
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+主に高校生を対象としたWEBアプリケーション。
+
+学習時間や成果を記録することで、自身の学習を管理出来るだけでなく、他人の学習状況を参考にすることで、それを自身の目標設定に役立てることを目的としたアプリケーションです。
+
+目標の設定の段階で悩んでしまったり、現在の学習段階が適切なのか不安に思ってしまう高校生を多く目にしていたので、
+それらを高校生が蓄積して(積み上げて)いくことで、どんどんとそういった悩みが軽減・解決されていく事を期待して作成することにしました。
 
 Things you may want to cover:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Ruby:  version　2.6.3
+* Rails: version 5.1.6
+* Bootstrap: version 4.3.1
+* Test: RSpec
+* Circle CI
+* Heroku
+  https://tsumi-age.herokuapp.com/
