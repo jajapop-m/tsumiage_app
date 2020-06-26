@@ -3,13 +3,13 @@ version: 2
 jobs:
   test:
     docker:
-      - image: circleci/ruby:2.6.5
-    working_directory: ~/repo
+      - image: circleci/ruby:2.6.3
+    working_directory:
     steps:
       - checkout
       - run:
           name: Run test
-          command: 'bundle exec rspec'
+          command:
 
 workflows:
   version: 2
