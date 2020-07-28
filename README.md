@@ -19,6 +19,7 @@ Things you may want to cover:
   https://tsumi-age.herokuapp.com/
 
 ※※※実装済みの機能※※※
+
 ・ユーザーアカウント作成
 
 ・メールアドレスによるアカウント有効化(再送信可)
